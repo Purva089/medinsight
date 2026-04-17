@@ -1,0 +1,35 @@
+category: metabolic
+doc_type: clinic_info
+
+---
+doctor_name: Dr. Priyanka Sharma
+specialization: Diabetologist & Endocrinologist
+clinic_name: Diabetes Care & Metabolic Centre
+contact: +91-98204-56789
+address: GF-3, Green Park Market, New Delhi - 110016
+available: Mon-Sat 9am-5pm
+notes: Specialises in HbA1c management, insulin therapy, and fasting glucose abnormalities.
+---
+doctor_name: Dr. Vivek Agarwal
+specialization: Endocrinologist
+clinic_name: Sugar & Hormone Clinic
+contact: +91-97600-11234
+address: 22, Vasant Vihar, New Delhi - 110057
+available: Mon-Fri 10am-6pm
+notes: Expert in Type-1 and Type-2 diabetes, insulin resistance, and metabolic syndrome.
+---
+doctor_name: Dr. Kavita Nair
+specialization: Diabetologist
+clinic_name: Medanta Diabetes Institute
+contact: +91-90000-12345
+address: Medanta – The Medicity, Sector 38, Gurugram - 122001
+available: Mon-Sat 8am-4pm
+notes: Manages blood glucose disorders, HbA1c optimisation, and lifestyle intervention.
+---
+doctor_name: Dr. Sanjay Gupta
+specialization: Internal Medicine & Metabolic Disorders
+clinic_name: AIIMS Metabolic Unit
+contact: +91-11-2658-8500
+address: AIIMS Campus, Ansari Nagar, New Delhi - 110029
+available: Mon-Fri 9am-1pm (OPD)
+notes: Research-backed guidance on glucose, insulin, and metabolic marker interpretation.

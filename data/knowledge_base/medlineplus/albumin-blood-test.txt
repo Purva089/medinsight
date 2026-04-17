@@ -1,0 +1,223 @@
+Test: Albumin
+URL: https://medlineplus.gov/lab-tests/albumin-blood-test/
+
+Title: Albumin Blood Test
+
+Description:
+An albumin blood test measures the amount of albumin in your blood. Albumin is a protein made by your liver. Low albumin levels can be a sign ofliverorkidney diseaseor another medical condition. High levels may be a sign ofdehydration.
+
+Normal Range:
+
+
+Abnormal Results:
+
+
+Full Content:
+Albumin Blood Test: MedlinePlus Medical Test
+Skip navigation
+An official website of the United States government
+Here’s how you know
+Here’s how you know
+Official websites use .gov
+A
+.gov
+website belongs to an official government
+              organization in the United States.
+Secure .gov websites use HTTPS
+A
+lock
+(
+Lock
+Locked padlock icon
+) or
+https://
+means you’ve safely connected to
+              the .gov website. Share sensitive information only on official,
+              secure websites.
+National Library of Medicine
+Menu
+Health Topics
+Drugs & Supplements
+Genetics
+Medical Tests
+Medical Encyclopedia
+About MedlinePlus
+Search
+Search MedlinePlus
+GO
+About MedlinePlus
+What's New
+Site Map
+Customer Support
+Health Topics
+Drugs & Supplements
+Genetics
+Medical Tests
+Medical Encyclopedia
+Español
+You Are Here:
+Home
+→
+Medical Tests
+→
+Albumin Blood Test
+URL of this page: https://medlineplus.gov/lab-tests/albumin-blood-test/
+Albumin Blood Test
+To use the sharing features on this page, please enable JavaScript.
+What is an albumin blood test?
+An albumin blood test measures the amount of albumin in your blood. Albumin is a protein made by your liver. Low albumin levels can be a sign of
+liver
+or
+kidney disease
+or another medical condition. High levels may be a sign of
+dehydration
+.
+Blood is made of fluid and blood cells. Albumin keeps the fluid part of your blood from leaking out of your blood vessels (the tubes your blood flows through) and into other tissues. If you don't have enough albumin, fluid can leak out of your blood and build up in your lungs, abdomen (belly), or other parts of your body.
+Albumin also helps carry important substances throughout your body. These include
+hormones
+,
+vitamins
+, and enzymes (proteins that speed up certain chemical reactions in your body).
+Other names: ALB, serum albumin test
+What is it used for?
+An albumin blood test is used to check your general health and
+nutrition
+, and to see how well your liver and kidneys are working. If your liver is damaged or you're not well nourished, your liver may not make enough albumin. If your kidneys are damaged, they may let albumin pass from your blood into your urine (pee).
+An albumin test may also be used to monitor treatment for liver or kidney conditions, or other conditions that may affect albumin levels.
+An albumin blood test is often done as part of a group of blood tests that measure different enzymes, proteins, and other substances made in your liver. These tests are called
+liver function tests
+or a liver panel. An albumin test may also be part of a
+comprehensive metabolic panel
+(CMP), a group of routine blood tests that measures 14 substances in a sample of your blood.
+Why do I need an albumin blood test?
+Your health care provider may order an albumin test as part of your
+routine checkup
+. In this case, the test is usually ordered as part of a group of liver function tests or a comprehensive metabolic panel.
+You may also need an albumin test if you have symptoms of liver or kidney disease. Symptoms of liver disease include:
+Nausea and vomiting
+Lack of appetite
+Fatigue
+Weakness
+Jaundice
+, a condition that causes your skin and eyes to turn yellow
+Swelling
+and/or pain in your abdomen (belly)
+Swelling in your ankles and legs
+Dark-colored urine (pee) and/or light-colored stool (poop)
+Frequent
+itching
+Symptoms of kidney disease include:
+Swelling in your hands and feet or puffy eyelids
+Dry skin, itching, or numbness
+Fatigue
+Increased or decreased urination
+Urine that is bloody or foamy
+Loss of appetite and weight loss
+Muscle cramps
+Nausea and vomiting
+Shortness of breath
+Sleep problems
+Trouble thinking clearly
+With some types of kidney disease, such as
+chronic kidney disease
+, you may not have symptoms until the later stages.
+What happens during an albumin blood test?
+A health care professional will take a blood sample from a vein in your arm, using a small needle. After the needle is inserted, a small amount of blood will be collected into a test tube or vial. You may feel a little sting when the needle goes in or out. This usually takes less than five minutes.
+Will I need to do anything to prepare for the test?
+You don't need any special preparations to test for albumin in blood. If your provider ordered other blood tests, you may need to
+fast
+(not eat or drink) for several hours before the test. Your provider will let you know if there are any special instructions to follow. Certain medicines may affect your test results, so tell your provider what you are taking. But don't stop taking any medicines without talking with your provider first.
+Are there any risks to the test?
+There is very little risk to having a blood test. You may have slight pain or bruising at the spot where the needle was put in, but most symptoms go away quickly.
+What do the results mean?
+An albumin blood test alone cannot diagnose a condition. Your provider will usually consider your albumin test results with the results of other tests to make a diagnosis.
+Lower than normal albumin levels
+in your blood may be a sign of:
+Liver disease, including severe
+cirrhosis
+,
+hepatitis
+, and
+fatty liver disease
+Kidney disease
+Malnutrition
+, especially a lack of
+protein in your diet
+Infection
+Digestive diseases
+that involve problems using protein from food, such as
+Crohn's disease
+and
+malabsorption disorders
+Burns
+over a large area of your body
+Thyroid disease
+Higher than normal albumin levels
+in your blood may be a sign of dehydration, which may be caused by severe
+diarrhea
+or other conditions.
+If your albumin levels are not in the normal range, it doesn't always mean you have a medical condition that needs treatment. Certain medicines, including
+steroids
+, insulin, and hormones, can increase albumin levels. Your albumin levels may be lower than normal if you haven't eaten for 24 to 48 hours, or take certain medicines, including birth control pills. Albumin levels are also lower during pregnancy.
+If you have questions about your test results, ask your provider to explain what they mean.
+Learn more about
+laboratory tests, reference ranges, and understanding results
+.
+References
+American Liver Foundation [Internet]. New York: American Liver Foundation; c2024. Liver Function Tests; [updated 2024 Jan 12; cited 2022 Mar 24]; [about screens]. Available from:
+https://liverfoundation.org/for-patients/about-the-liver/diagnosing-liver-disease/#1503683022884-66408736-1d17
+Cleveland Clinic: Health Library: Diagnostics & Testing [Internet]. Cleveland (OH): Cleveland Clinic; c2024. Albumin Blood Test; [reviewed 2022 Feb 2; cited 2024 Nov 14]; [about 6 screens]. Available from:
+https://my.clevelandclinic.org/health/diagnostics/22390-albumin-blood-test
+Cleveland Clinic: Health Library: Diagnostics & Testing [Internet]. Cleveland (OH): Cleveland Clinic; c2024. Blood Tests; [reviewed 2022 Dec 06; cited 2024 Nov 20]; [about 16 screens]. Available from:
+https://my.clevelandclinic.org/health/diagnostics/24508-blood-tests
+Gounden V, Vashisht R, Jialal I. Hypoalbuminemia. [Updated 2023 Aug 28; cited 2024 Nov 14]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2024 Jan-. Available from:
+https://www.ncbi.nlm.nih.gov/books/NBK526080/
+Johns Hopkins Medicine [Internet]. Johns Hopkins Medicine; c2024. Health Library: Common Liver Tests; [cited 2024 Nov 14]; [about 3 screens]. Available from:
+https://www.hopkinsmedicine.org/health/treatment-tests-and-therapies/common-liver-tests
+Moman RN, Gupta N, Varacallo M. Physiology, Albumin. [Updated 2022 Dec 26; cited 2024 Nov 14]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2024 Jan-. Available from:
+https://www.ncbi.nlm.nih.gov/books/NBK459198/
+National Institute of Diabetes and Digestive and Kidney Diseases [Internet]. Bethesda (MD): U.S. Department of Health and Human Services; Albuminaria; [reviewed 2016 Oct; cited 2024 Nov 14  ]; [about 4 screens]. Available from:
+https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/tests-diagnosis/albuminuria-albumin-urine
+Nemours KidsHealth [Internet]. Jacksonville (FL): The Nemours Foundation; c1995-2024. Getting a Blood Test; [reviewed 2021 Sep; cited 2024 Nov 20; [about 4 screens]. Available from:
+https://kidshealth.org/en/parents/blood-tests.html
+Testing.com [Internet]. Seattle (WA): OneCare Media; c2024. Albumin Blood Test; [modified 2022 Nov 4; cited 2024 Nov 14]; [about 10 screens]. Available from:
+https://www.testing.com/tests/albumin/
+Testing.com [Internet]. Seattle (WA): OneCare Media; c2024. Comprehensive Metabolic Panel (CMP); [modified 2022 Jul 29; cited 2024 Nov 14]; [about 13 screens]. Available from:
+https://www.testing.com/tests/comprehensive-metabolic-panel-cmp/
+Related Health Topics
+Kidney Diseases
+Kidney Tests
+Liver Diseases
+Related Medical Tests
+Comprehensive Metabolic Panel (CMP)
+Elastography
+How to Cope with Medical Test Anxiety
+How to Understand Your Lab Results
+Liver Function Tests
+Osmolality Tests
+Pleural Fluid Analysis
+Prealbumin Blood Test
+Protein Electrophoresis by Immunofixation Blood Test
+Total Protein and Albumin/Globulin (A/G) Ratio
+What You Need to Know About Blood Testing
+The information on this site should not be used as a substitute for professional medical care or advice. Contact a health care provider if you have questions about your health.
+Learn how to cite this page
+About MedlinePlus
+What's New
+Site Map
+Customer Support
+Subscribe to RSS
+Connect with NLM
+NLM Web Policies
+Copyright
+Accessibility
+Guidelines for Links
+Viewers & Players
+HHS Vulnerability Disclosure
+MedlinePlus Connect for EHRs
+For Developers
+National Library of Medicine
+8600 Rockville Pike, Bethesda, MD 20894
+U.S. Department of Health and Human Services
+National Institutes of Health
+Last updated December 9, 2024

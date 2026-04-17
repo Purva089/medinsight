@@ -1,0 +1,201 @@
+Test: Free T3
+URL: https://medlineplus.gov/lab-tests/triiodothyronine-t3-tests/
+
+Title: Triiodothyronine (T3) Tests
+
+Description:
+A triiodothyronine (T3) test measures the level of T3 in a sample of your blood. It's used to help diagnosethyroid disease.
+
+Normal Range:
+
+
+Abnormal Results:
+
+
+Full Content:
+Triiodothyronine (T3) Tests: MedlinePlus Medical Test
+Skip navigation
+An official website of the United States government
+Here’s how you know
+Here’s how you know
+Official websites use .gov
+A
+.gov
+website belongs to an official government
+              organization in the United States.
+Secure .gov websites use HTTPS
+A
+lock
+(
+Lock
+Locked padlock icon
+) or
+https://
+means you’ve safely connected to
+              the .gov website. Share sensitive information only on official,
+              secure websites.
+National Library of Medicine
+Menu
+Health Topics
+Drugs & Supplements
+Genetics
+Medical Tests
+Medical Encyclopedia
+About MedlinePlus
+Search
+Search MedlinePlus
+GO
+About MedlinePlus
+What's New
+Site Map
+Customer Support
+Health Topics
+Drugs & Supplements
+Genetics
+Medical Tests
+Medical Encyclopedia
+Español
+You Are Here:
+Home
+→
+Medical Tests
+→
+Triiodothyronine (T3) Tests
+URL of this page: https://medlineplus.gov/lab-tests/triiodothyronine-t3-tests/
+Triiodothyronine (T3) Tests
+To use the sharing features on this page, please enable JavaScript.
+What is a triiodothyronine (T3) test?
+A triiodothyronine (T3) test measures the level of T3 in a sample of your blood. It's used to help diagnose
+thyroid disease
+.
+Your thyroid is a small, butterfly-shaped gland at the base of your throat. It makes two
+hormones
+, T3 and T4 (thyroxine). Hormones are chemical messengers in your bloodstream that control the actions of certain cells or organs.
+Thyroid hormones work together to control the way your body uses energy. They affect your weight, heart, body temperature, muscle strength, and even your mood. In children, thyroid hormones affect growth, too.
+There are two forms of T3 in your blood:
+Free T3
+is the active form that enters your tissues where it's needed.
+Bound T3
+is attached to certain proteins which prevent it from entering your tissues. Most of your T3 is bound.
+There are different tests for measuring T3:
+A total T3 test
+measures both bound and free T3 together. Medical experts think that this test is the more accurate way to measure T3.
+A free T3 test
+only measures free T3.
+Other names: thyroid function test; total triiodothyronine, free triiodothyronine, FT3, TT3, radioimmunoassay FT3
+What is it used for?
+A T3 test is used to help:
+Diagnose
+hyperthyroidism
+, a condition in which your thyroid gland makes too much thyroid hormone. The test can also help find out what's causing the condition.
+Diagnose
+pituitary disorders
+.
+The pituitary is a pea-sized gland at the base of your brain. It makes a hormone called TSH (thyroid stimulating hormone). TSH tells the thyroid how much T3 and T4 to make. So, abnormal T3 levels may be a sign of a pituitary problem.
+Monitor treatment for thyroid disease
+, including hyperthyroidism and
+hypothyroidism
+, which is when the thyroid gland makes to little thyroid hormone.
+T3 tests are usually ordered with blood tests that measure
+T4
+and
+TSH (thyroid stimulating hormone)
+tests.
+Why do I need a T3 test?
+You may need a T3 test if you have symptoms of hyperthyroidism (too much thyroid hormone). Symptoms may include:
+Anxiety
+, nervousness, irritability
+Weight loss, even though your appetite may increase
+Shaky hands
+, muscle weakness
+Sweating or being very sensitive to heat
+Irregular heartbeat (arrhythmia)
+Frequent bowel movements (poops)
+Goiter (an enlarged thyroid gland)
+Trouble sleeping and
+fatigue
+You may also need a T3 test if:
+You take thyroid hormone medicine to treat a thyroid problem.
+A T3 test can check whether you're taking the right dose to keep your thyroid hormone levels in a healthy range.
+You had abnormal results on a TSH and/or T4 test.
+Providers usually order these tests first to look into a possible thyroid disorder. If your test results are abnormal or unclear, your provider may use a T3 test to confirm or rule out hyperthyroidism.
+T3 testing isn't commonly used to help check for hypothyroidism (too little thyroid hormone). That's because other
+thyroid tests
+can diagnose hypothyroidism earlier than a T3 test.
+What happens during a T3 test?
+A health care professional will take a blood sample from a vein in your arm, using a small needle. After the needle is inserted, a small amount of blood will be collected into a test tube or vial. You may feel a little sting when the needle goes in or out. This usually takes less than five minutes.
+Will I need to do anything to prepare for the test?
+You don't need any special preparations for a T3 blood test. Certain medicines and supplements can affect your test results. Your provider will let you know if you need to stop taking any medicines before your test. But don't stop taking any medicines unless your provider tells you to.
+Are there any risks to the test?
+There is very little risk to having a blood test. You may have slight pain or bruising at the spot where the needle was put in, but most symptoms go away quickly.
+What do the results mean?
+To understand the results of your T3 test, your provider will usually compare them with the results of your TSH and T4 tests. Like T3, T4 tests may measure either free or total T4, but providers usually measure free T4.
+Your provider will look for different combinations of high, low, and normal results. Each combination suggests a different thyroid condition. Ask your provider to explain what your test results say about your health.
+In general:
+Normal T3 levels
+(free or total) alone do not rule out thyroid disease. But if your TSH and free T4 levels are also normal, you probably don't have a thyroid condition.
+High T3 levels
+(free or total) may mean you have hyperthyroidism (too much thyroid hormone).
+High T3 levels with:
+Low TSH and high free T4 levels may mean that a problem with your thyroid gland is causing too much thyroid hormone.
+Normal or high TSH and high free T4 levels may mean that a pituitary gland condition is causing too much thyroid hormone.
+Low T3 levels
+(free or total) may mean hypothyroidism (too little thyroid hormone).
+Low or normal T3 levels with:
+High TSH levels and low free T4 levels may mean that a problem with your thyroid gland is causing too little thyroid hormone.
+Low TSH and low free T4 levels may mean that a pituitary gland condition is causing too little thyroid hormone.
+If you have questions about your results, talk with your provider.
+Learn more about
+laboratory tests, reference ranges, and understanding results
+.
+References
+American Thyroid Association [Internet]. Falls Church (VA): American Thyroid Association; c2023. Thyroid Function Tests; [cited 2023 Jun 14]; [about 9 screens]. Available from:
+https://www.thyroid.org/thyroid-function-tests
+ARUP Consult [Internet]. Salt Lake City (UT): ARUP Laboratories; c2023. Initial Evaluation of Thyroid Function; [updated 2023 Feb; cited 2023 Jun 12]; [about 6 screens]. Available from:
+https://arupconsult.com/content/initial-evaluation-thyroid-function
+Cleveland Clinic: Health Library: Diagnostics & Testing [Internet]. Cleveland (OH): Cleveland Clinic; c2023.T3 Triiodothyronine Test; [reviewed 2022 Feb 14; cited 2023 Jun 12]; [about 11 screens]. Available from:
+https://my.clevelandclinic.org/health/diagnostics/22425-triiodothyronine-t3
+Michigan Medicine: University of Michigan [Internet]. Ann Arbor (MI): Regents of the University of Michigan; c1995-2025. What is hyperthyroidism?; [cited 2025 Nov 19]; [about 4 screens]. Available from:
+https://www.uofmhealth.org/our-care/specialties-services/hyperthyroidism-graves-disease
+National Institute of Diabetes and Digestive and Kidney Diseases [Internet]. Bethesda (MD): U.S. Department of Health and Human Services; Hyperthyroidism (Overactive Thyroid); [updated 2021 Aug; cited 2023 Jun 14]; [about 13 screens]. Available from:
+https://www.niddk.nih.gov/health-information/endocrine-diseases/hyperthyroidism
+National Institute of Diabetes and Digestive and Kidney Diseases [Internet]. Bethesda (MD): U.S. Department of Health and Human Services; Thyroid Tests; [updated 2017 cited 2023 Jun 14]; [about 6 screens]. Available from:
+https://www.niddk.nih.gov/health-information/diagnostic-tests/thyroid
+Shahid MA, Ashraf MA, Sharma S. Physiology, Thyroid Hormone. [Updated 2023 May 1;cited 2023 Jun 12]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2023 Jan-. Available from:
+https://www.ncbi.nlm.nih.gov/books/NBK500006/
+Testing.com [Internet]. Seattle (WA): OneCare Media; c2023. T3 Test; [modified 2022 Nov 9; cited 2023 Jun 14]; [about 11 screens]. Available from:
+https://www.testing.com/tests/t3-test/
+Related Health Topics
+Hormones
+Hyperthyroidism
+Hypothyroidism
+Thyroid Diseases
+Thyroid Tests
+Related Medical Tests
+How to Cope with Medical Test Anxiety
+How to Understand Your Lab Results
+Thyroid Antibodies
+Thyroxine (T4) Test
+TSH (Thyroid-stimulating hormone) Test
+What You Need to Know About Blood Testing
+The information on this site should not be used as a substitute for professional medical care or advice. Contact a health care provider if you have questions about your health.
+Learn how to cite this page
+About MedlinePlus
+What's New
+Site Map
+Customer Support
+Subscribe to RSS
+Connect with NLM
+NLM Web Policies
+Copyright
+Accessibility
+Guidelines for Links
+Viewers & Players
+HHS Vulnerability Disclosure
+MedlinePlus Connect for EHRs
+For Developers
+National Library of Medicine
+8600 Rockville Pike, Bethesda, MD 20894
+U.S. Department of Health and Human Services
+National Institutes of Health
+Last updated January 10, 2024

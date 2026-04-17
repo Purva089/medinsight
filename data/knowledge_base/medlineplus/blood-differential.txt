@@ -1,0 +1,256 @@
+Test: Eosinophils
+URL: https://medlineplus.gov/lab-tests/blood-differential/
+
+Title: Blood Differential
+
+Description:
+A blood differential test measures the amount of each type of white blood cell (WBC) that you have in your blood. This test can help diagnose or monitor an infection or condition that affects yourimmune system.
+
+Normal Range:
+
+
+Abnormal Results:
+
+
+Full Content:
+Blood Differential: MedlinePlus Medical Test
+Skip navigation
+An official website of the United States government
+Here’s how you know
+Here’s how you know
+Official websites use .gov
+A
+.gov
+website belongs to an official government
+              organization in the United States.
+Secure .gov websites use HTTPS
+A
+lock
+(
+Lock
+Locked padlock icon
+) or
+https://
+means you’ve safely connected to
+              the .gov website. Share sensitive information only on official,
+              secure websites.
+National Library of Medicine
+Menu
+Health Topics
+Drugs & Supplements
+Genetics
+Medical Tests
+Medical Encyclopedia
+About MedlinePlus
+Search
+Search MedlinePlus
+GO
+About MedlinePlus
+What's New
+Site Map
+Customer Support
+Health Topics
+Drugs & Supplements
+Genetics
+Medical Tests
+Medical Encyclopedia
+Español
+You Are Here:
+Home
+→
+Medical Tests
+→
+Blood Differential
+URL of this page: https://medlineplus.gov/lab-tests/blood-differential/
+Blood Differential
+To use the sharing features on this page, please enable JavaScript.
+What is a blood differential test?
+A blood differential test measures the amount of each type of white blood cell (WBC) that you have in your blood. This test can help diagnose or monitor an infection or condition that affects your
+immune system
+.
+White blood cells are also called leukocytes and WBCs. They are a type of blood cell that is made in your bone marrow and found in your blood and lymph tissue (which is part of your
+lymphatic system
+). White blood cells are an important part of your immune system. When you are injured or sick, your white blood cells will travel through your bloodstream and tissues to where they are needed. There, they will help your body fight off the infection or disease.
+There are five different types of white blood cells:
+Neutrophils
+are the most common type of white blood cell. They are your body's main defense against infection when
+bacteria
+,
+viruses
+, or other germs enter your body.
+Lymphocytes
+include two main types of white blood cells: B cells and T cells. B cells fight off invading viruses, bacteria, or toxins. Certain T cells can target and destroy your body's own cells, such as cancer cells and cells that have been infected by viruses.
+Monocytes
+kill bacteria, viruses, and other germs that may make you sick. They also boost your body's immune response and clear away dead cells.
+Eosinophils
+defend against
+parasites
+and infections. They are also involved in
+allergies
+and help control inflammation (swelling and redness).
+Basophils
+release enzymes during allergic reactions and
+asthma
+attacks.
+A blood differential test measures the amount and/or percentage of each type of white blood cell. Another test called a
+white blood count
+(WBC) measures the total number of these cells in your blood.
+Other names for a blood differential test: Complete blood count (CBC) with differential, Differential, White blood cell differential count, Leukocyte differential count, Peripheral Differential
+What is it used for?
+A blood differential test is often part of a
+routine checkup
+. Because the five types of white blood cell do different jobs, measuring them separately can give your health care provider important information about your health.
+The test can also help diagnose a variety of medical conditions, such as:
+Infections
+Autoimmune diseases
+such as
+rheumatoid arthritis
+Leukemia
+and other types of
+cancer
+Why do I need a blood differential test?
+A blood differential test is used for many reasons. Your provider may order the test to:
+Monitor your overall health
+or as part of a routine checkup.
+Diagnose the cause of your symptoms or your abnormal WBC count
+from another blood test. For example, if you have symptoms such as feeling
+unusually tired
+or weak, or have unexplained bruising or other symptoms, this test may help uncover the cause.
+Monitor an existing
+blood disorder
+or related condition.
+What happens during a blood differential test?
+A health care professional will take a blood sample from a vein in your arm, using a small needle. After the needle is inserted, a small amount of blood will be collected into a test tube or vial. You may feel a little sting when the needle goes in or out. This usually takes less than five minutes.
+Will I need to do anything to prepare for the test?
+No special preparation is necessary.
+Are there any risks to the test?
+There is very little risk to having a blood test. After the test, some people experience mild pain, dizziness, or bruising. These symptoms usually go away quickly.
+What do the results mean?
+Your blood differential test results may be higher or lower than normal for many reasons.
+Conditions that may cause a
+high white blood cell count
+, also called leukocytosis, can include:
+Infections
+Autoimmune or inflammatory disorders
+Leukemia or
+Hodgkin disease
+Allergic reactions
+Certain
+steroids
+Conditions that may cause a
+low white blood cell count
+, also called leukopenia, can include:
+Bone marrow diseases
+Chemotherapy
+Certain medicines, such as
+antibiotics
+Cancer
+HIV
+But abnormal results don't always mean you have a condition that needs medical treatment. Some other factors that may affect your results can include:
+Physical injury or extreme
+stress
+Smoking
+Alcohol use
+If your results seem abnormal, your provider may order other tests to help figure out the cause. If you have questions about your results, talk with your provider. To understand your results, your provider will also consider your symptoms, medical history, and the results of other blood tests.
+Learn more about
+laboratory tests, reference ranges, and understanding results
+.
+References
+American Cancer Society: All about Cancer: Blood-related Problems. [Internet]. Neutropenia (Low White Blood Cell Counts). [revised 2024 Feb 6; cited 2024 Jul 11]; [about 2 screens]. Available from:
+https://www.cancer.org/cancer/managing-cancer/side-effects/low-blood-counts/neutropenia.html
+Centers for Disease Control and Prevention [Internet]. Atlanta: U.S. Department of Health and Human Services; Neutropenia and Risk for Infection; [reviewed 2021 Nov 16; cited 2024 Jul 10]; [about 2 screens]. Available from:
+https://www.cdc.gov/cancer-preventing-infections/patients/neutropenia.html
+Cleveland Clinic: Health Library: Diagnostics & Testing [Internet]. Cleveland (OH): Cleveland Clinic; c2024. Blood Tests; [reviewed 2022 Dec 06; cited 2024 Jul 10]; [about 16 screens]. Available from:
+https://my.clevelandclinic.org/health/diagnostics/24508-blood-tests
+Cleveland Clinic: Health Library: Diagnostics & Testing [Internet]. Cleveland (OH): Cleveland Clinic; c2024. Complete Blood Count (CBC); [reviewed 2024 Mar 14; cited 2024 Jul 10]; [about 13 screens]. Available from:
+https://my.clevelandclinic.org/health/diagnostics/4053-complete-blood-count
+Cleveland Clinic [Internet]. Cleveland (OH): Cleveland Clinic; c2024. High White Blood Cell Count: Overview; [reviewed 2022 Jan 19; cited 2024 Jul 11]; [about 10 screens]. Available from:
+https://my.clevelandclinic.org/health/diagnostics/17704-high-white-blood-cell-count
+Cleveland Clinic [Internet]. Cleveland (OH): Cleveland Clinic; c2024. Low White Blood Cell Count (Leukopenia): Overview [reviewed 2022 Oct 27; cited 2024 Jul 11]; [about 8 screens]. Available from:
+https://my.clevelandclinic.org/health/symptoms/17706-low-white-blood-cell-count
+Cleveland Clinic [Internet]. Cleveland (OH): Cleveland Clinic; c2024. White Blood Cells [reviewed 2021 July 23; cited 2024 Jul 11]; [about 9 screens]. Available from:
+https://my.clevelandclinic.org/health/body/21871-white-blood-cells
+Curry, CV. Differential Blood Count. [updated 2019 Nov 20; cited 2024 Jul 10]; [about 4 screens]. In Medscape: Drugs & Diseases: Laboratory Medicine [Internet]. Atlanta (GA): WebMD LLC; c1994-2024. Available from:
+https://emedicine.medscape.com/article/2085133-overview#showall
+Labcorp [Internet]. Burlington (NC): Laboratory Corporation of America(r) Holdings; c2024. Patient Test Information: Complete Blood Count (CBC) With Differential; [cited 2024 Jul 10]; [about 3 screens]. Available from:
+https://www.labcorp.com/tests/005009/complete-blood-count-cbc-with-differential
+Leukemia & Lymphoma Society; c2024. [Internet]. Understanding Blood Counts. [cited 2024 Jul 11]; [about 3 screens]. Available from:
+https://www.lls.org/treatment/lab-and-imaging-tests/understanding-blood-counts
+Mank V, Azhar W, Brown K. Leukocytosis. [Updated 2024 Apr 21; cited 2024 Jul 11]; [about 12 screens]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2024 Jan-. Available from:
+https://www.ncbi.nlm.nih.gov/books/NBK560882/
+Mayo Clinic [Internet]. Mayo Foundation for Medical Education and Research; c1998-2024.Complete Blood Count (CBC): Overview; cited 2024 Jul 10]; [about 6 screens]. Available from:
+https://www.mayoclinic.org/tests-procedures/complete-blood-count/about/pac-20384919
+Mayo Clinic [Internet]. Mayo Foundation for Medical Education and Research; c1998-2024. High white blood cell count: Causes; [cited 2024 Jul 11]; [about 2 screens]. Available from:
+https://www.mayoclinic.org/symptoms/high-white-blood-cell-count/basics/causes/sym-20050611
+Mayo Clinic [Internet]. Mayo Foundation for Medical Education and Research; c1998-2024. Low white blood cell count: Causes; [cited 2024 Jul 11]; [about 2 screens]. Available from:
+https://www.mayoclinic.org/symptoms/low-white-blood-cell-count/basics/causes/sym-20050615
+Merck Manual Consumer Version [Internet]. Kenilworth (NJ): Merck & Co. Inc.; c2024. Overview of White Blood Cell Disorders; [updated 2023 Apr; cited 2024 Jul 11]; [about 6 screens]. Available from:
+https://www.merckmanuals.com/home/blood-disorders/white-blood-cell-disorders/overview-of-white-blood-cell-disorders
+National Cancer Institute [Internet]. Bethesda (MD): U.S. Department of Health and Human Services; NCI Dictionary of Cancer Terms: basophil; [cited 2024 Jul 10]; [about 1 screen]. Available from:
+https://www.cancer.gov/publications/dictionaries/cancer-terms/def/basophil
+National Cancer Institute [Internet]. Bethesda (MD): U.S. Department of Health and Human Services; NCI Dictionary of Cancer Terms: eosinophil; [cited 2024 Jul 10]; [about 1 screen]. Available from:
+https://www.cancer.gov/publications/dictionaries/cancer-terms/def/eosinophil
+National Cancer Institute [Internet]. Bethesda (MD): U.S. Department of Health and Human Services; NCI Dictionary of Cancer Terms: immune system; [cited 2024 Jul 10]; [about 1 screen]. Available from:
+https://www.cancer.gov/publications/dictionaries/cancer-terms/def/immune-system
+National Cancer Institute [Internet]. Bethesda (MD): U.S. Department of Health and Human Services; NCI Dictionary of Cancer Terms: killer T cell; [cited 2024 Jul 10]; [about 1 screen]. Available from:
+https://www.cancer.gov/publications/dictionaries/cancer-terms/def/killer-t-cell
+National Cancer Institute [Internet]. Bethesda (MD): U.S. Department of Health and Human Services; NCI Dictionary of Cancer Terms: lymphocyte [cited 2024 Jul 10]; [about 1 screen]. Available from:
+https://www.cancer.gov/publications/dictionaries/cancer-terms/def/lymphocyte
+National Cancer Institute [Internet]. Bethesda (MD): U.S. Department of Health and Human Services; NCI Dictionary of Cancer Terms: monocyte [cited 2024 Jul 10]; [about 1 screen]. Available from:
+https://www.cancer.gov/publications/dictionaries/cancer-terms/def/monocyte
+National Cancer Institute [Internet]. Bethesda (MD): U.S. Department of Health and Human Services; NCI Dictionary of Cancer Terms: neutrophil [cited 2024 Jul 10]; [about 1 screen]. Available from:
+https://www.cancer.gov/publications/dictionaries/cancer-terms/def/neutrophil
+National Cancer Institute [Internet]. Bethesda (MD): U.S. Department of Health and Human Services; NCI Dictionary of Cancer Terms: white blood cell [cited 2024 Jul 15]; [about 1 screen]. Available from:
+https://www.cancer.gov/publications/dictionaries/cancer-terms/def/white-blood-cell
+National Heart, Lung, and Blood Institute [Internet]. Bethesda (MD): U.S. Department of Health and Human Services; Your Guide to Anemia; 2021 Sep [cited 2025 Jul 23]; [about 37 screens]. Available from:
+https://www.nhlbi.nih.gov/sites/default/files/publications/nhlbi-ospeec-your-guide-to-anemia-booklet-release-508.pdf
+National Institute of Allergy and Infectious Diseases [Internet]. Bethesda (MD): U.S. Department of Health and Human Services; Immune System Research: Immune Cells; [reviewed 2014 Jan 17; cited 2024 Jul 11]; [about 6 screens]. Available from:
+https://www.niaid.nih.gov/research/immune-cells
+Nemours KidsHealth [Internet]. Jacksonville (FL): The Nemours Foundation; c1995-2024. Getting a Blood Test; [reviewed 2021 Sep; cited 2024 Jul 10]; [about 4 screens]. Available from:
+https://kidshealth.org/en/parents/blood-tests.html
+Testing.com [Internet]. Seattle (WA): OneCare Media; c2021. White Blood Cell Count (WBC Blood Test); [modified 2022 Sep 28; cited 2024 Jul 10]; [about 8 screens]. Available from:
+https://www.testing.com/tests/white-blood-cell-count-wbc/
+Testing.com [Internet]. Seattle (WA): OneCare Media; c2021. White Blood Cell Count (WBC) Differential; [modified 2022 Aug 7; cited 2024 Jul 11]; [about 7 screens]. Available from:
+https://www.testing.com/tests/white-blood-cell-wbc-differential/
+Walker H, Hall D, Hurst J. Clinical Methods The History, Physical, and Laboratory Examinations. [Internet]. 3rd Ed Atlanta (GA): Emory University School of Medicine; c1990. Chapter 153, Blumenreich MS. The White Blood Cell and Differential Count. [cited 2024 Jul 10]; [about 7 screens]. Available from:
+https://www.ncbi.nlm.nih.gov/books/NBK261/#A4533
+Related Health Topics
+Autoimmune Diseases
+Bacterial Infections
+Blood Count Tests
+Blood Disorders
+Eosinophilic Disorders
+Leukemia
+Viral Infections
+Related Medical Tests
+Antineutrophil Cytoplasmic Antibodies (ANCA) Test
+BCR-ABL1 Genetic Test
+Bone Marrow Tests
+Complete Blood Count (CBC)
+How to Cope with Medical Test Anxiety
+How to Prepare for a Lab Test
+How to Understand Your Lab Results
+Pneumococcal Disease Tests
+What You Need to Know About Blood Testing
+White Blood Count (WBC)
+The information on this site should not be used as a substitute for professional medical care or advice. Contact a health care provider if you have questions about your health.
+Learn how to cite this page
+About MedlinePlus
+What's New
+Site Map
+Customer Support
+Subscribe to RSS
+Connect with NLM
+NLM Web Policies
+Copyright
+Accessibility
+Guidelines for Links
+Viewers & Players
+HHS Vulnerability Disclosure
+MedlinePlus Connect for EHRs
+For Developers
+National Library of Medicine
+8600 Rockville Pike, Bethesda, MD 20894
+U.S. Department of Health and Human Services
+National Institutes of Health
+Last updated October 9, 2024

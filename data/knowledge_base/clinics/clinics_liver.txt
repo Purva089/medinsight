@@ -1,0 +1,35 @@
+category: liver
+doc_type: clinic_info
+
+---
+doctor_name: Dr. Priya Sharma
+specialization: Hepatologist
+clinic_name: City Liver & Gastro Centre
+contact: +91-98765-43210
+address: SCO 45, Model Town, Gurugram - 122001
+available: Mon-Sat 9am-6pm
+notes: Specialises in elevated SGPT/SGOT, fatty liver, and bilirubin disorders.
+---
+doctor_name: Dr. Arjun Mehta
+specialization: Gastroenterologist & Hepatologist
+clinic_name: Liver Foundation Clinic
+contact: +91-96500-78901
+address: 12-A, Panchsheel Park, New Delhi - 110017
+available: Mon-Fri 10am-7pm
+notes: Expert in ALT/AST abnormalities, jaundice workup, and liver function panel interpretation.
+---
+doctor_name: Dr. Rohit Khanna
+specialization: Hepatologist
+clinic_name: Fortis Liver Clinic
+contact: +91-99990-23456
+address: Fortis Escorts, Okhla Road, New Delhi - 110025
+available: Tue-Sun 8am-2pm
+notes: Manages chronic liver conditions, alkaline phosphatase elevation, and albumin monitoring.
+---
+doctor_name: Dr. Meena Iyer
+specialization: Internal Medicine & Hepatology
+clinic_name: Apollo Liver Health Centre
+contact: +91-98112-66789
+address: Apollo Hospitals, Mathura Road, New Delhi - 110076
+available: Mon-Sat 11am-5pm
+notes: Skilled in managing elevated total protein, bilirubin elevation, and liver panel follow-up.

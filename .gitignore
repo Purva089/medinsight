@@ -1,0 +1,119 @@
+# ── Python ────────────────────────────────────────────────────────────────────
+*.py[cod]
+*$py.class
+*.so
+.Python
+__pycache__/
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# ── Virtual Environments ──────────────────────────────────────────────────────
+.venv/
+.venv312/
+venv/
+ENV/
+env/
+.virtualenv/
+
+# ── IDEs & Editors ────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.project
+.pydevproject
+.settings/
+
+# ── Environment & Secrets ─────────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+secrets/
+
+# ── Databases & Migrations ────────────────────────────────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+alembic/versions/__pycache__/
+
+# ── Logs & Temporary Files ────────────────────────────────────────────────────
+*.log
+logs/
+tmp/
+temp/
+.cache/
+
+# ── Coverage & Testing ────────────────────────────────────────────────────────
+.coverage
+.pytest_cache/
+htmlcov/
+.tox/
+.hypothesis/
+
+# ── Data Files (raw datasets, synthetic reports) ──────────────────────────────
+data/raw/*.csv
+data/synthetic_reports/current/*.pdf
+data/synthetic_reports/historical/*.pdf
+# Keep directory structure but ignore contents
+!data/raw/.gitkeep
+!data/synthetic_reports/current/.gitkeep
+!data/synthetic_reports/historical/.gitkeep
+
+# ── Knowledge Base (optional: commit small files, ignore large) ───────────────
+# Uncomment if you don't want to version control knowledge base files:
+# data/knowledge_base/medlineplus/*.txt
+# data/knowledge_base/who/*.pdf
+# data/knowledge_base/clinics/*.txt
+
+# ── OS-specific ───────────────────────────────────────────────────────────────
+Thumbs.db
+Desktop.ini
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+
+# ── Jupyter Notebooks ─────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb
+
+# ── MyPy ──────────────────────────────────────────────────────────────────────
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# ── Ruff ──────────────────────────────────────────────────────────────────────
+.ruff_cache/
+
+# ── Package Managers ──────────────────────────────────────────────────────────
+pip-log.txt
+pip-delete-this-directory.txt
+poetry.lock
+Pipfile.lock
+
+# ── Docker ────────────────────────────────────────────────────────────────────
+*.dockerfile.swp
+docker-compose.override.yml
+
+# ── Node (if frontend has Node dependencies) ──────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# ── Streamlit ─────────────────────────────────────────────────────────────────
+.streamlit/secrets.toml
+
+# ── Application-specific ──────────────────────────────────────────────────────
+uploaded_files/
+*.pkl
+*.joblib

@@ -1,0 +1,35 @@
+category: thyroid
+doc_type: clinic_info
+
+---
+doctor_name: Dr. Anjali Singh
+specialization: Endocrinologist
+clinic_name: Thyroid & Hormone Wellness Clinic
+contact: +91-98200-34567
+address: A-12, Safdarjung Enclave, New Delhi - 110029
+available: Mon-Sat 9am-5pm
+notes: Specialises in TSH abnormalities, hypothyroidism, hyperthyroidism, and T3/T4 imbalances.
+---
+doctor_name: Dr. Harish Patel
+specialization: Endocrinologist
+clinic_name: Delhi Thyroid Centre
+contact: +91-96111-77890
+address: 3rd Floor, Kailash Colony Market, New Delhi - 110048
+available: Mon-Fri 10am-6pm
+notes: Expert in autoimmune thyroid disease, Hashimoto's, and TSH normalisation therapy.
+---
+doctor_name: Dr. Rekha Bose
+specialization: Endocrinologist & Internal Medicine
+clinic_name: Max Thyroid Clinic
+contact: +91-99100-45678
+address: Max Super Speciality Hospital, Saket, New Delhi - 110017
+available: Tue-Sat 9am-3pm
+notes: Manages Free T3/T4 imbalances, subclinical hypothyroidism, and long-term thyroid monitoring.
+---
+doctor_name: Dr. Suresh Nambiar
+specialization: Endocrinologist
+clinic_name: Medanta Endocrinology Department
+contact: +91-90000-55667
+address: Medanta – The Medicity, Sector 38, Gurugram - 122001
+available: Mon-Sat 8am-4pm
+notes: Advanced thyroid function testing, nodule evaluation, and thyroid replacement therapy.

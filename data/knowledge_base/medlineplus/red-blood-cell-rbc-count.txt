@@ -1,0 +1,212 @@
+Test: RBC Count
+URL: https://medlineplus.gov/lab-tests/red-blood-cell-rbc-count/
+
+Title: Red Blood Cell (RBC) Count
+
+Description:
+A red blood cell (RBC) count measures the number of red blood cells, also known as erythrocytes, in your blood. Red blood cells are made in your bone marrow, the spongy tissue inside your large bones. They contain hemoglobin, an iron-rich protein that carries oxygen from your lungs to every cell in your body. Your cells need oxygen to grow, reproduce, and make energy for you to function. An RBC count that is higher or lower than normal is often the first sign of an illness. So, the test may allow you to get treatment even before you have symptoms.
+
+Normal Range:
+
+
+Abnormal Results:
+
+
+Full Content:
+Red Blood Cell (RBC) Count: MedlinePlus Medical Test
+Skip navigation
+An official website of the United States government
+Here’s how you know
+Here’s how you know
+Official websites use .gov
+A
+.gov
+website belongs to an official government
+              organization in the United States.
+Secure .gov websites use HTTPS
+A
+lock
+(
+Lock
+Locked padlock icon
+) or
+https://
+means you’ve safely connected to
+              the .gov website. Share sensitive information only on official,
+              secure websites.
+National Library of Medicine
+Menu
+Health Topics
+Drugs & Supplements
+Genetics
+Medical Tests
+Medical Encyclopedia
+About MedlinePlus
+Search
+Search MedlinePlus
+GO
+About MedlinePlus
+What's New
+Site Map
+Customer Support
+Health Topics
+Drugs & Supplements
+Genetics
+Medical Tests
+Medical Encyclopedia
+Español
+You Are Here:
+Home
+→
+Medical Tests
+→
+Red Blood Cell (RBC) Count
+URL of this page: https://medlineplus.gov/lab-tests/red-blood-cell-rbc-count/
+Red Blood Cell (RBC) Count
+To use the sharing features on this page, please enable JavaScript.
+What is a red blood cell (RBC) count?
+A red blood cell (RBC) count measures the number of red blood cells, also known as erythrocytes, in your blood. Red blood cells are made in your bone marrow, the spongy tissue inside your large bones. They contain hemoglobin, an iron-rich protein that carries oxygen from your lungs to every cell in your body. Your cells need oxygen to grow, reproduce, and make energy for you to function. An RBC count that is higher or lower than normal is often the first sign of an illness. So, the test may allow you to get treatment even before you have symptoms.
+Other names: erythrocyte count, red count, RBC Count
+What is it used for?
+A red blood cell (RBC) count is almost always part of a
+complete blood count
+(CBC), a group of tests that measures the number and type of cells in your blood. The RBC measurement is used to help diagnose red blood cell disorders, such as
+anemia
+, a condition in which your body does not make enough healthy red blood cells.
+Why do I need a red blood cell count?
+You may get this test as part of a CBC, which is often included in a
+routine checkup
+. You may also need this test if you are getting treatment that might affect your blood cell counts, such as
+chemotherapy
+, to monitor health conditions, such as
+chronic kidney disease
+, or if you have symptoms of a low or high red blood cell count.
+Symptoms of a low red blood cell count may include:
+Shortness of breath
+Weakness or
+fatigue
+Headache
+Dizziness
+Arrhythmia
+(a problem with the rate or rhythm of your heartbeat)
+Pale skin
+Symptoms of a high red blood cell count may include:
+Headache
+Dizziness
+Vision problems
+What happens during a red blood cell count?
+A health care professional will take a blood sample from a vein in your arm, using a small needle. After the needle is inserted, a small amount of blood will be collected into a test tube or vial. You may feel a little sting when the needle goes in or out. This usually takes less than five minutes.
+Will I need to do anything to prepare for this test?
+You don't need any special preparations for a red blood cell (RBC) count.
+Are there any risks to this test?
+There is very little risk to having a blood test. There may be slight pain or bruising at the spot where the needle was put in, but most symptoms go away quickly.
+What do the results mean?
+Your results will show whether you have a normal red blood cell count or a count that is too low or too high.
+Conditions that may cause a low red blood cell count can include:
+Anemia
+Leukemia
+, a type of blood cancer
+Malnutrition
+, a condition in which your body does not get the calories,
+vitamins
+, and/or
+minerals
+needed for good health
+Multiple myeloma
+, a cancer of the bone marrow
+Kidney failure
+Blood loss
+from injury or other problems
+Alcohol use disorder (AUD)
+Pregnancy
+Conditions that may cause a high red blood cell count can include:
+Dehydration
+Heart disease
+Polycythemia vera
+, a disease which causes your
+bone marrow
+to make too many red blood cells
+Scarring of the lungs, often due to cigarette
+smoking
+Lung disease
+Kidney cancer
+Sleep apnea
+, a disorder that causes you to repeatedly stop breathing during sleep
+Misuse of certain drugs for athletic performance (such as
+anabolic steroids
+) and living at a high altitude can also cause a high red blood cell count.
+Talk to your health care provider if you have questions about your results. Your provider will consider your symptoms, medical history, and the results of other blood tests to understand your red blood cell count results.
+Learn more about
+laboratory tests, reference ranges, and understanding results
+.
+Is there anything else I need to know about an RBC count?
+If results showed you had a low or a high red blood cell count, you may need more tests to help your provider make a diagnosis. These can include:
+Reticulocyte count
+, which measures the number of reticulocytes in your blood. Reticulocytes are immature (still developing) red blood cells. This test helps check if your bone marrow is making the right amount of red blood cells.
+Iron tests
+, which measure iron levels in your blood.
+Iron
+is essential for making red blood cells.
+Vitamin B test
+, which measures the amount of one or more B vitamins in your blood. B vitamins are important for making red blood cells and keeping your body healthy.
+References
+American Cancer Society [Internet]. Atlanta: American Cancer Society Inc.; c2024. Anemia (Low Red Blood Cell Counts); [updated 2024 Apr 15; cited 2024 Jun 21]; [about 2 screens]. Available from:
+https://www.cancer.org/cancer/managing-cancer/side-effects/low-blood-counts/anemia.html
+American Society of Hematology [Internet]. Washington D.C.: American Society of Hematology; c2024. Blood Basics; [cited 2024 Jun 21]; [about 2 screens]. Available from:
+https://www.hematology.org/education/patients/blood-basics
+Cleveland Clinic: Health Library: Diagnostics & Testing [Internet]. Cleveland (OH): Cleveland Clinic; c2024. Blood Tests; [reviewed 2022 Dec 06; cited 2024 Jun 21]; [about 16 screens]. Available from:
+https://my.clevelandclinic.org/health/diagnostics/24508-blood-tests
+Cleveland Clinic: Health Library: Symptoms [Internet]. Cleveland (OH): Cleveland Clinic; c2024. Function of Red Blood Cells; [reviewed 2021 Aug 11; cited 2024 Jun 21]; [about 9 screens]. Available from:
+https://my.clevelandclinic.org/health/body/21691-function-of-red-blood-cells
+Cleveland Clinic: Health Library: Body Systems & Organs [Internet]. Cleveland (OH): Cleveland Clinic; c2024. High Red Blood Cell Count; [reviewed 2022 Apr 25; cited 2024 Jun 21]; [about 9 screens]. Available from:
+https://my.clevelandclinic.org/health/symptoms/17810-high-red-blood-cell-count
+Mayo Clinic [Internet]. Mayo Foundation for Medical Education and Research; c1998-2024. Anemia; [cited 2024 Jun 21]; [about 7 screens]. Available from:
+https://www.mayoclinic.org/diseases-conditions/anemia/symptoms-causes/syc-20351360
+Mayo Clinic [Internet]. Mayo Foundation for Medical Education and Research; c1998-2024. High red blood cell count; [cited 2024 Jun 21]; [about 2 screens]. Available from:
+https://www.mayoclinic.org/symptoms/high-red-blood-cell-count/basics/causes/sym-20050858
+Nemours KidsHealth [Internet]. Jacksonville (FL): The Nemours Foundation; c1995-2024. Getting a Blood Test; [reviewed 2021 Sep; cited 2024 Jun 21]; [about 4 screens]. Available from:
+https://kidshealth.org/en/parents/blood-tests.html
+Nursing 2020: Critical Care [Internet]. Wolters Kluwer Health, Inc.; c2024. Red Blood Cell Count; Jan 2020 [cited 2024 Jun 21]; [about 3 screens]. Available from:
+https://journals.lww.com/nursingcriticalcare/fulltext/2020/01000/red_blood_cell_count.6.aspx
+Pathology Tests Explained [Internet]. Alexandria (Australia): Australasian Association for Clinical Biochemistry and Laboratory Medicine; c2024. Full Blood Count; [reviewed 2021 Mar 24; cited 2024 Jun 21]; [about 13 screens]. Available from:
+https://pathologytestsexplained.org.au/ptests-pro.php?q=Full+blood+count
+Testing.com [Internet]. Seattle (WA).: OneCare Media; c2024. CBC Blood Test (Complete Blood Count); [modified 2022 Sept 28; cited 2024 Jun 21]; [about 10 screens]. Available from:
+https://www.testing.com/tests/complete-blood-count-cbc/
+Testing.com [Internet]. Seattle (WA).: OneCare Media; c2024. Red Blood Cell Count (RBC) Test; [modified 2022 Sept 27; cited 2024 Jun 21]; [about 10 screens]. Available from:
+https://www.testing.com/tests/red-blood-cell-count-rbc/
+Turner J, Parsi M, Badireddy M. Anemia. [Updated 2023 Aug 8; cited 2024 Jun 21]; [about 10 screens]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2024 Jan-. Available from:
+https://www.ncbi.nlm.nih.gov/books/NBK499994/
+Verywell Health [Internet]. New York: About, Inc.; c2024. Red Blood Cell (RBC) Test: High vs. Low, Normal Ranges; 2024 May 11 [cited 2024 Jun 21]; [about 3 screens]. Available from:
+https://www.verywellhealth.com/red-blood-cell-rbc-count-1942659
+Related Health Topics
+Anemia
+Blood Count Tests
+Related Medical Tests
+Complete Blood Count (CBC)
+How to Cope with Medical Test Anxiety
+How to Prepare for a Lab Test
+How to Understand Your Lab Results
+Red Blood Cell (RBC) Indices
+Reticulocyte Count
+What You Need to Know About Blood Testing
+The information on this site should not be used as a substitute for professional medical care or advice. Contact a health care provider if you have questions about your health.
+Learn how to cite this page
+About MedlinePlus
+What's New
+Site Map
+Customer Support
+Subscribe to RSS
+Connect with NLM
+NLM Web Policies
+Copyright
+Accessibility
+Guidelines for Links
+Viewers & Players
+HHS Vulnerability Disclosure
+MedlinePlus Connect for EHRs
+For Developers
+National Library of Medicine
+8600 Rockville Pike, Bethesda, MD 20894
+U.S. Department of Health and Human Services
+National Institutes of Health
+Last updated October 7, 2024

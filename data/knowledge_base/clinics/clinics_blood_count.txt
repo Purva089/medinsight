@@ -1,0 +1,35 @@
+category: blood_count
+doc_type: clinic_info
+
+---
+doctor_name: Dr. Neha Kapoor
+specialization: Hematologist
+clinic_name: Delhi Blood & Bone Marrow Centre
+contact: +91-98112-34567
+address: B-14, Lajpat Nagar Phase II, New Delhi - 110024
+available: Mon-Sat 9am-6pm
+notes: Specialises in anaemia, polycythaemia, and platelet disorders.
+---
+doctor_name: Dr. Rajan Mehrotra
+specialization: Hematologist
+clinic_name: Apollo Haematology Clinic
+contact: +91-97301-88920
+address: Apollo Hospital Campus, Sarita Vihar, New Delhi - 110076
+available: Mon-Fri 10am-5pm
+notes: Expert in CBC interpretation, iron-deficiency anaemia, and WBC abnormalities.
+---
+doctor_name: Dr. Sunita Verma
+specialization: Internal Medicine & Haematology
+clinic_name: Fortis Blood Disorders Clinic
+contact: +91-98765-00112
+address: Fortis Hospital, Sector 62, Noida - 201301
+available: Tue-Sun 8am-3pm
+notes: Manages chronic anaemia and blood count monitoring for outpatients.
+---
+doctor_name: Dr. Amit Bhatnagar
+specialization: Hematologist
+clinic_name: Max Blood Health Centre
+contact: +91-99100-23456
+address: Max Hospital, Saket, New Delhi - 110017
+available: Mon-Sat 11am-7pm
+notes: Skilled in interpreting CBC panels including RBC morphology and differentials.

@@ -1,0 +1,199 @@
+Test: Direct Bilirubin
+URL: https://medlineplus.gov/lab-tests/bilirubin-blood-test/
+
+Title: Bilirubin Blood Test
+
+Description:
+A bilirubin blood test measures the levels of bilirubin in your blood. Bilirubin is a yellowish substance made during your body's normal process of breaking down old red blood cells. Bilirubin is found in bile, a fluid your liver makes to help you digest food.
+
+Normal Range:
+
+
+Abnormal Results:
+
+
+Full Content:
+Bilirubin Blood Test: MedlinePlus Medical Test
+Skip navigation
+An official website of the United States government
+Here’s how you know
+Here’s how you know
+Official websites use .gov
+A
+.gov
+website belongs to an official government
+              organization in the United States.
+Secure .gov websites use HTTPS
+A
+lock
+(
+Lock
+Locked padlock icon
+) or
+https://
+means you’ve safely connected to
+              the .gov website. Share sensitive information only on official,
+              secure websites.
+National Library of Medicine
+Menu
+Health Topics
+Drugs & Supplements
+Genetics
+Medical Tests
+Medical Encyclopedia
+About MedlinePlus
+Search
+Search MedlinePlus
+GO
+About MedlinePlus
+What's New
+Site Map
+Customer Support
+Health Topics
+Drugs & Supplements
+Genetics
+Medical Tests
+Medical Encyclopedia
+Español
+You Are Here:
+Home
+→
+Medical Tests
+→
+Bilirubin Blood Test
+URL of this page: https://medlineplus.gov/lab-tests/bilirubin-blood-test/
+Bilirubin Blood Test
+To use the sharing features on this page, please enable JavaScript.
+What is a bilirubin blood test?
+A bilirubin blood test measures the levels of bilirubin in your blood. Bilirubin is a yellowish substance made during your body's normal process of breaking down old red blood cells. Bilirubin is found in bile, a fluid your liver makes to help you digest food.
+If your liver is healthy, it will remove most of the bilirubin from your body through your
+bile ducts
+(the tubes that carry bile from your liver). If your liver is damaged or your bile ducts are blocked, bilirubin can leak out of your liver and into your blood. When too much bilirubin gets into the bloodstream, it can cause
+jaundice
+, a condition that causes your skin and eyes to turn yellow. If you have jaundice, your health care provider may order a bilirubin blood test to check for
+liver disease
+or damage.
+Bilirubin is usually tested with a blood test but can also be tested in your
+urine
+.
+Other names: Total serum bilirubin, TSB total bilirubin, TBIL neonatal bilirubin, direct bilirubin, conjugated bilirubin, indirect bilirubin, unconjugated bilirubin
+What is it used for?
+A bilirubin blood test may be used to check the health of your liver, look for the cause of jaundice, or determine how well a treatment is working.
+The test is also commonly used to help diagnose newborn jaundice. Many healthy babies get jaundice because their livers haven't developed enough to get rid of the bilirubin. Newborn jaundice is usually not harmful and clears up within a few weeks. But in some cases, high bilirubin levels can lead to brain damage, so infants are often tested as a precaution.
+Why do I need a bilirubin blood test?
+Your health care provider may order a bilirubin blood test:
+If you have symptoms such as jaundice, dark urine, clay-colored stool (poop),  or stomach pain. These could indicate
+hepatitis
+,
+cirrhosis
+, or other liver diseases.
+To find out if there is a blockage in your bile ducts.
+To monitor an existing liver disease.
+To diagnose disorders related to your body breaking down red blood cells too quickly. For example, high bilirubin levels in the bloodstream may be a sign of hemolytic
+anemia
+. This condition happens when your body destroys red blood cells faster than it makes them.
+What happens during a bilirubin blood test?
+A health care professional will take a blood sample from a vein in your arm, using a small needle. After the needle is inserted, a small amount of blood will be collected into a test tube or vial. You may feel a little sting when the needle goes in or out. This usually takes less than five minutes.
+If the test is done on your newborn, they will have a heel stick test. A health care professional will clean your baby's heel with alcohol and poke the heel with a small needle. They will collect a few drops of blood and put a bandage on the site.
+Will I need to do anything to prepare for the test?
+Your provider may tell you to
+fast
+(not eat or drink) for several hours before your blood test. You may need to stop taking certain medicines before this test, so tell your provider about everything you take. But don't stop taking any medicines unless your provider tells you to. Your provider will let you know if there are any other special instructions.
+Are there any risks to the test?
+There is very little risk to having a blood test. You may have slight pain or bruising at the spot where the needle was put in, but most symptoms go away quickly.
+What do the results mean?
+The results will show if the amount of bilirubin in your blood is in the normal range. The normal ranges can vary from lab to lab.
+If the results are outside your lab's reference range, you may need further testing. Normal results can vary based on the lab, your sex, and if the test is being done on an infant or child. but high bilirubin levels may mean your liver isn't working right.
+High bilirubin levels
+(hyperbilirubinemia) may be due to:
+Hemolytic anemia
+Liver disease
+Blockage in your bile ducts
+Low bilirubin levels
+(hypobilirubinemia) are not usually a cause for concern but may be due to:
+Medicines such as
+antibiotics
+,
+birth control pills
+, sleeping pills, and
+seizure
+medicines
+Abnormal results don't always mean you have a medical condition that needs treatment. Higher-than-normal bilirubin levels can also be caused by some medicines, certain foods, or strenuous exercise. To learn what your results mean, talk with your provider.
+Learn more about
+laboratory tests, reference ranges, and understanding results
+.
+Is there anything else I need to know about a bilirubin blood test?
+A bilirubin blood test is only one measure of your liver health. If your provider thinks you might have a liver disease or a red blood cell disorder, you may need other tests, such as:
+Liver function tests
+, a group of tests that measure different substances in your blood
+Liver protein tests
+Urine tests
+An
+ultrasound
+A liver
+biopsy
+, to get a sample of your liver tissue to examine under a microscope
+References
+American Liver Foundation. [Internet]. New York: American Liver Foundation; c2024. Diagnosing Liver Disease - Liver Biopsy and Liver Function Tests; [updated 2024 Jan 12; cited 2024 Jul 22]; [about 6 screens]. Available from:
+https://liverfoundation.org/liver-diseases/diagnosing-liver-disease
+Cleveland Clinic: Health Library: Diagnostics & Testing [Internet]. Cleveland (OH): Cleveland Clinic; c2024. Bilirubin Tests; [reviewed 2023 Jan 09; cited 2024 Jul 22]; [about 10 screens]. Available from:
+https://my.clevelandclinic.org/health/diagnostics/17845-bilirubin
+Cleveland Clinic: Health Library: Diagnostics & Testing [Internet]. Cleveland (OH): Cleveland Clinic; c2024. Blood Tests; [reviewed 2022 Dec 06; cited 2024 Jul 22]; [about 16 screens]. Available from:
+https://my.clevelandclinic.org/health/diagnostics/24508-blood-tests
+Healthy Children.org. [Internet]. Elk Grove Village (IL): American Academy of Pediatrics; c2024. Jaundice in Newborns: Parent FAQs; [updated 2022 Aug 5; cited 2024 Jul 22]; [about 3 screens]. Available from:
+https://www.healthychildren.org/English/ages-stages/baby/Pages/jaundice.aspx
+Kalakonda A, Jenkins BA, John S. Physiology, Bilirubin. [Updated 2022 Sep 12; cited 2024 Jul 22]; [about 3 screens]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2024 Jan-. Available from:
+https://www.ncbi.nlm.nih.gov/books/NBK470290/
+Mayo Clinic [Internet]. Mayo Foundation for Medical Education and Research; c1998-2024. Bilirubin test; [cited 2024 Jul 22]; [about 4 screens]. Available from
+https://www.mayoclinic.org/tests-procedures/bilirubin/about/pac-20393041
+National Cancer Institute [Internet]. Bethesda (MD): U.S. Department of Health and Human Services; NCI Dictionary of Cancer Terms: Bile Duct; [cited 2024 Jul 22]; [about 1 screen]. Available from:
+https://www.cancer.gov/publications/dictionaries/cancer-terms/def/bile-duct
+National Heart, Lung, and Blood Institute [Internet]. Bethesda (MD): U.S. Department of Health and Human Services; Hemolytic Anemia ; [updated 2022 Mar 24; cited 2024 Jul 22]; [about 2 screens]. Available from:
+https://www.nhlbi.nih.gov/health-topics/hemolytic-anemia
+National Institute of Diabetes and Digestive and Kidney Diseases [Internet]. Bethesda (MD): U.S. Department of Health and Human Services; Symptoms & Causes of Gallstones; [reviewed 2017 Nov; cited 2024 Jul 22]; [about 2 screens]. Available from:
+https://www.niddk.nih.gov/health-information/digestive-diseases/gallstones/symptoms-causes
+Nemours KidsHealth [Internet]. Jacksonville (FL): The Nemours Foundation; c1995-2024. Getting a Blood Test; [reviewed 2021 Sep; cited 2024 Jul 22]; [about 4 screens]. Available from:
+https://kidshealth.org/en/parents/blood-tests.html
+Testing.com [Internet]. Seattle (WA): c2024. Bilirubin Test; [last modified 2022 Nov 29; cited 2024 Jul 22]; [about 7 screens]. Available from:
+https://www.testing.com/tests/bilirubin/
+Related Health Topics
+Bile Duct Diseases
+G6PD Deficiency
+Gallbladder Diseases
+Hepatitis
+Jaundice
+Liver Diseases
+Related Medical Tests
+Bilirubin in Urine
+Comprehensive Metabolic Panel (CMP)
+Cord Blood Testing and Banking
+Elastography
+Fasting for a Blood Test
+G6PD Test
+Hepatitis Testing
+How to Cope with Medical Test Anxiety
+How to Prepare for a Lab Test
+How to Understand Your Lab Results
+Liver Function Tests
+What You Need to Know About Blood Testing
+The information on this site should not be used as a substitute for professional medical care or advice. Contact a health care provider if you have questions about your health.
+Learn how to cite this page
+About MedlinePlus
+What's New
+Site Map
+Customer Support
+Subscribe to RSS
+Connect with NLM
+NLM Web Policies
+Copyright
+Accessibility
+Guidelines for Links
+Viewers & Players
+HHS Vulnerability Disclosure
+MedlinePlus Connect for EHRs
+For Developers
+National Library of Medicine
+8600 Rockville Pike, Bethesda, MD 20894
+U.S. Department of Health and Human Services
+National Institutes of Health
+Last updated October 27, 2024
