@@ -30,6 +30,8 @@ async def evaluate_question(question: str, test_idx: int) -> dict:
     """Run RAG retrieval for one question and return pass/fail with details."""
     try:
         idx = _get_index()
+        if idx is None:
+            return {"question": question, "passed": False, "reason": "Index not initialized"}
         retriever = idx.as_retriever(similarity_top_k=3)
 
         import asyncio as _asyncio

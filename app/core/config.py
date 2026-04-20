@@ -30,9 +30,9 @@ class Settings(BaseSettings):
     )
 
     # ── Secrets (required in .env) ────────────────────────────────────────
-    database_url: str
+    database_url: str = "postgresql+asyncpg://user:pass@localhost/medinsight"
     groq_api_key: str = ""
-    secret_key: str
+    secret_key: str = "dev-secret-key-change-in-production"
 
     # ── Auth ─────────────────────────────────────────────────────────────
     algorithm: str = "HS256"
@@ -56,7 +56,7 @@ class Settings(BaseSettings):
     max_tokens_self_heal: int = 1000
     max_tokens_text_to_sql: int = 300
     max_tokens_ltm_summary: int = 200
-    max_tokens_report: int = 600
+    max_tokens_report: int = 500  # Reduced to enforce shorter, focused answers
 
     # ── Embedding ─────────────────────────────────────────────────────────
     embedding_provider: str = "huggingface"
@@ -70,7 +70,7 @@ class Settings(BaseSettings):
     db_max_overflow: int = 20
     db_pool_timeout: int = 30
     # ── Server ────────────────────────────────────────────────────────────────
-    api_host: str = "127.0.0.1"
+    api_host: str = "0.0.0.0"
     api_port: int = 8000
     frontend_port: int = 8501
     # ── Rate limiting ─────────────────────────────────────────────────────

@@ -73,7 +73,7 @@ async def orchestrator_node(state: MedInsightState) -> MedInsightState:
 
     # ── LLM classification ────────────────────────────────────────────────────
     prompt = PROMPT_CLASSIFICATION.format(question=question)
-    intent_str = IntentType.GENERAL.value   # safe default
+    intent_str = IntentType.RAG.value   # safe default (was GENERAL)
 
     log.info(
         "orchestrator_classifying",
@@ -83,11 +83,47 @@ async def orchestrator_node(state: MedInsightState) -> MedInsightState:
     )
 
     try:
-        raw = await _llm.call_reasoning(prompt, max_tokens_key="classification")
+        # Use fast model for classification (smaller, faster)
+        raw = await _llm.call_fast(prompt, max_tokens=10)
         raw_clean = raw.strip().lower().split()[0] if raw.strip() else ""
+        
+        # Handle common synonyms and map to core intents
+        intent_synonyms = {
+            # RAG synonyms (understanding/explanation)
+            "explain": "rag",
+            "explanation": "rag",
+            "meaning": "rag",
+            "interpret": "rag",
+            "understand": "rag",
+            "why": "rag",
+            "what": "rag",
+            # SQL synonyms (querying/listing)
+            "list": "sql",
+            "show": "sql",
+            "retrieve": "sql",
+            "query": "sql",
+            "get": "sql",
+            "find": "sql",
+            "summary": "sql",
+            "summarize": "sql",
+            "overview": "sql",
+            # TREND synonyms (temporal analysis)
+            "change": "trend",
+            "changes": "trend",
+            "history": "trend",
+            "improving": "trend",
+            "trend": "trend",
+            "compare": "trend",
+            # Off-topic fallback to RAG (safeguards will block)
+            "hi": "rag",
+            "hello": "rag",
+            "thanks": "rag",
+        }
+        raw_clean = intent_synonyms.get(raw_clean, raw_clean)
+        
         # Map raw string to IntentType
         is_known = raw_clean in IntentType._value2member_map_  # type: ignore[attr-defined]
-        intent_str = IntentType(raw_clean).value if is_known else IntentType.GENERAL.value  # type: ignore[attr-defined]
+        intent_str = IntentType(raw_clean).value if is_known else IntentType.RAG.value  # type: ignore[attr-defined]
 
         log.debug(
             "orchestrator_classification_raw",
@@ -113,20 +149,62 @@ async def orchestrator_node(state: MedInsightState) -> MedInsightState:
     # "what does the user want?" — the orchestrator answers "which agents?".
     question_lower = question.lower()
 
-    needs_rag   = intent_str in (IntentType.RAG.value, IntentType.GENERAL.value)
+    needs_rag   = intent_str == IntentType.RAG.value
     needs_sql   = intent_str == IntentType.SQL.value
     needs_trend = intent_str == IntentType.TREND.value
 
+    # Detect report generation requests
+    report_keywords = [
+        "generate report", "create report", "download report",
+        "generate pdf", "create pdf", "download pdf",
+        "export report", "make report", "full report",
+        "comprehensive report", "detailed report"
+    ]
+    needs_report_generation = any(kw in question_lower for kw in report_keywords)
+
     # If the question mentions a known test name alongside sql/trend,
     # also pull RAG context automatically (parallel enrichment).
+    # AND extract the specific test name for trend queries
+    mentioned_tests = []
     if intent_str in (IntentType.SQL.value, IntentType.TREND.value):
         from app.core.categories import CATEGORY_MAP  # local import to avoid circularity
-        if any(test_name in question_lower for test_name in CATEGORY_MAP):
-            needs_rag = True
+        import re
+        
+        # Sort test names by length (longest first) to match "hemoglobin a1c" before "hemoglobin"
+        sorted_tests = sorted(CATEGORY_MAP.keys(), key=len, reverse=True)
+        
+        for test_name in sorted_tests:
+            # Use word boundary matching to avoid substring matches
+            # "hemoglobin" should NOT match "hemoglobin a1c"
+            pattern = r'\b' + re.escape(test_name) + r'\b'
+            if re.search(pattern, question_lower):
+                needs_rag = True
+                if intent_str == IntentType.TREND.value:
+                    # Store the specific test name for trend queries (exact DB format)
+                    # Database has "Hemoglobin", "WBC Count", etc. (title case)
+                    standardized_name = test_name.replace("_", " ").title()
+                    if standardized_name not in mentioned_tests:  # Avoid duplicates
+                        mentioned_tests.append(standardized_name)
+        
+        log.debug(
+            "orchestrator_mentioned_tests",
+            question=question[:50],
+            mentioned_tests=mentioned_tests,
+            intent=intent_str,
+        )
+    
+    # Store mentioned test names for trend agent to filter
+    if mentioned_tests:
+        state["mentioned_tests"] = mentioned_tests
+    
+    # If generating a report, ALWAYS include trend analysis (for charts)
+    if needs_report_generation:
+        needs_trend = True
 
     state["needs_rag"]   = needs_rag
     state["needs_sql"]   = needs_sql
     state["needs_trend"] = needs_trend
+    state["needs_report_generation"] = needs_report_generation
 
     agent_log.complete(
         status="success",
@@ -134,6 +212,7 @@ async def orchestrator_node(state: MedInsightState) -> MedInsightState:
         needs_rag=needs_rag,
         needs_sql=needs_sql,
         needs_trend=needs_trend,
+        needs_report_generation=needs_report_generation,
     )
 
     log.info(
@@ -144,6 +223,7 @@ async def orchestrator_node(state: MedInsightState) -> MedInsightState:
         needs_rag=needs_rag,
         needs_sql=needs_sql,
         needs_trend=needs_trend,
+        needs_report_generation=needs_report_generation,
     )
     return state
 

@@ -35,18 +35,22 @@ class ReportResponse(BaseModel):
     intent_handled: str
 
 
-def compute_confidence(rag_chunks: list, trend_results: list) -> str:
+def compute_confidence(rag_chunks: list, trend_results: list, sql_results: list | None = None) -> str:
     """
     Derive confidence level from available context — never delegated to the LLM.
 
-    high   : both RAG chunks and trend data available
-    medium : only one of the two available
-    low    : neither available
+    high   : Multiple sources available (RAG + SQL, or RAG + Trend, or all three)
+    medium : Single source available (RAG only, SQL only, or Trend only)
+    low    : No context available
     """
     has_rag = bool(rag_chunks)
     has_trend = bool(trend_results)
-    if has_rag and has_trend:
+    has_sql = bool(sql_results)
+    
+    sources_count = sum([has_rag, has_trend, has_sql])
+    
+    if sources_count >= 2:
         return "high"
-    if has_rag or has_trend:
+    if sources_count == 1:
         return "medium"
     return "low"

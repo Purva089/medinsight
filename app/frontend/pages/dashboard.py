@@ -95,7 +95,7 @@ def show_dashboard_page() -> None:
     c3.metric("Abnormal Results", len(abnormal),
               delta=f"{len(abnormal)} flagged" if abnormal else None,
               delta_color="inverse")
-    c4.metric("Last Report", (reports[0].get("upload_date","")[:10] if reports else "—"))
+    c4.metric("Last Report", (reports[0].get("uploaded_at","")[:10] if reports else "—"))
     st.markdown("<div style='height:24px'></div>", unsafe_allow_html=True)
 
     # ── Two-column body ───────────────────────────────────────────────────────

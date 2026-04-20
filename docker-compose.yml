@@ -1,0 +1,27 @@
+services:
+  # ═══════════════════════════════════════════════════════════════════════════
+  # MedInsight (Backend + Frontend in single container)
+  # Uses Neon Cloud PostgreSQL (from .env)
+  # ═══════════════════════════════════════════════════════════════════════════
+  medinsight:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: medinsight
+    env_file:
+      - .env
+    # network_mode: host makes the container share WSL2's network stack.
+    # WSL2 automatically port-forwards its own localhost (127.0.0.1) to
+    # Windows localhost, so http://localhost:8000 and http://localhost:8501
+    # work on the Windows side without needing Docker Desktop or admin rights.
+    # Note: 'ports' mapping is ignored when network_mode is host.
+    network_mode: host
+    volumes:
+      - ./data:/app/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped

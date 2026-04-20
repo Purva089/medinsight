@@ -27,6 +27,22 @@ class ExtractedTest(BaseModel):
     @classmethod
     def strip_str(cls, v: object) -> str:
         return str(v).strip()
+    
+    @field_validator("status", mode="before")
+    @classmethod
+    def normalize_status(cls, v: object) -> str:
+        """Normalize status to lowercase (LLM sometimes returns capitalized values)."""
+        status_str = str(v).strip().lower()
+        # Map common variations
+        if status_str in ("normal", "norm", "ok"):
+            return "normal"
+        elif status_str in ("high", "elevated", "h"):
+            return "high"
+        elif status_str in ("low", "l", "decreased"):
+            return "low"
+        elif status_str in ("critical", "crit", "abnormal"):
+            return "critical"
+        return status_str  # Return as-is, will fail Literal validation if invalid
 
     @field_validator("value", "reference_range_low", "reference_range_high", mode="before")
     @classmethod
@@ -34,7 +50,7 @@ class ExtractedTest(BaseModel):
         if v is None or v == "":
             return None
         try:
-            return float(v)
+            return float(str(v))
         except (TypeError, ValueError):
             return None
 
@@ -50,3 +66,8 @@ class ExtractionResult(BaseModel):
     extraction_method: Literal["pymupdf", "groq", "regex"] = "pymupdf"
     raw_text: str = ""
     errors: list[str] = Field(default_factory=list)
+    
+    # Patient demographics extracted from report
+    patient_name: str | None = None
+    patient_age: int | None = None
+    patient_gender: str | None = None

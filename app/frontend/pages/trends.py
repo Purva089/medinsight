@@ -1,6 +1,7 @@
 """Trends page."""
 from __future__ import annotations
 import os, requests
+from urllib.parse import quote as url_quote
 import streamlit as st
 from app.frontend.api_client import API_BASE as _API, auth_headers as _hdr
 from app.frontend.components.theme import (
@@ -30,7 +31,7 @@ def _fetch_tests(token: str):
 @st.cache_data(ttl=60, show_spinner=False)
 def _fetch_trend(token: str, test_name: str):
     try:
-        enc = requests.utils.quote(test_name, safe="")
+        enc = url_quote(test_name, safe="")
         r = requests.get(f"{_API}/trends/{enc}",
                          headers={"Authorization": f"Bearer {token}"}, timeout=20)
         if r.ok: return r.json()
@@ -85,15 +86,14 @@ def show_trends_page() -> None:
         st.warning("Could not load trend data. Please try again."); return
 
     dp   = data.get("data_points") or []
-    meta = data.get("summary") or {}
 
     # ── Stats row ────────────────────────────────────────────────────────────
-    latest_v = meta.get("latest_value") or (dp[-1].get("value") if dp else "—")
-    count_v  = meta.get("count") or len(dp)
-    ref_l    = meta.get("reference_low")  or data.get("reference_low")  or ""
-    ref_h    = meta.get("reference_high") or data.get("reference_high") or ""
+    latest_v = dp[-1].get("value") if dp else "—"
+    count_v  = len(dp)
+    ref_l    = data.get("reference_low")  or ""
+    ref_h    = data.get("reference_high") or ""
     ref_str  = f"{ref_l}–{ref_h}" if ref_l or ref_h else "—"
-    trend_s  = (meta.get("trend") or "").capitalize() or "—"
+    trend_s  = (data.get("direction") or "").capitalize() or "—"
     trend_c  = DANGER if "rising" in trend_s.lower() else SUCCESS if "falling" in trend_s.lower() else TEXT_MUTED
 
     c1,c2,c3,c4 = st.columns(4)
@@ -106,21 +106,6 @@ def show_trends_page() -> None:
         col.markdown(_stat_card(lbl, val, sub, clr), unsafe_allow_html=True)
 
     st.markdown("<div style='height:12px'></div>", unsafe_allow_html=True)
-
-    # ── Alert banners ─────────────────────────────────────────────────────────
-    abnormal = [p for p in dp if (p.get("status","")).lower() != "normal"]
-    if abnormal:
-        pct = round(len(abnormal)/len(dp)*100) if dp else 0
-        bdr = DANGER if pct > 60 else WARNING
-        bg2 = "#FFF1F2" if pct > 60 else "#FFFBEB"
-        st.markdown(
-            f'<div style="background:{bg2};border:1px solid {bdr};'
-            f'border-left:4px solid {bdr};border-radius:12px;padding:12px 16px;margin:6px 0 14px">'
-            f'<b style="color:{bdr}">{pct}% of readings are out of range.</b>'
-            f'<span style="color:{TEXT_SEC};font-size:0.83rem;margin-left:6px">'
-            f'Consider discussing this with your doctor.</span></div>',
-            unsafe_allow_html=True,
-        )
 
     # ── Chart ─────────────────────────────────────────────────────────────────
     if dp:
@@ -135,7 +120,7 @@ def show_trends_page() -> None:
         st.info("Not enough data points to render a chart yet.")
 
     # ── AI Interpretation ─────────────────────────────────────────────────────
-    interp = data.get("interpretation") or meta.get("interpretation")
+    interp = data.get("trend_description") or data.get("interpretation")
     if interp:
         st.markdown(
             f'<div style="background:{BG_CARD};border:1px solid {BORDER};'

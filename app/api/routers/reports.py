@@ -12,7 +12,6 @@ import aiofiles
 from fastapi import APIRouter, BackgroundTasks, Depends, File, HTTPException, UploadFile, status
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-
 from app.api.dependencies import get_current_patient, get_db
 from app.core.config import settings
 from app.core.database import AsyncSessionLocal
@@ -27,7 +26,7 @@ log = get_logger(__name__)
 
 router = APIRouter(prefix="/reports", tags=["reports"])
 
-_PROJECT_ROOT = Path(__file__).resolve().parents[4]
+_PROJECT_ROOT = Path(__file__).resolve().parents[3]
 _UPLOAD_DIR = _PROJECT_ROOT / "data" / "synthetic_reports" / "uploads"
 
 
@@ -60,15 +59,15 @@ async def _process_report(report_id: uuid.UUID, pdf_bytes: bytes, patient_id: uu
             result = await extractor.extract(pdf_bytes, str(report_id), str(patient_id))
             report_date = date.today()
 
-            # Upsert lab results
+            # Insert lab results (skip if already inserted for this specific report_id)
             inserted = 0
             for test in result.extracted_tests:
                 existing = (
                     await db.execute(
                         select(LabResult).where(
-                            LabResult.patient_id == patient_id,
+                            # LabResult.patient_id == patient_id,
+                            LabResult.report_id == report_id,
                             LabResult.test_name == test.test_name,
-                            LabResult.report_date == report_date,
                         )
                     )
                 ).scalar_one_or_none()
@@ -91,6 +90,17 @@ async def _process_report(report_id: uuid.UUID, pdf_bytes: bytes, patient_id: uu
             report.extraction_status = "completed"
             report.tests_extracted = inserted
             report.extraction_confidence = result.overall_confidence
+            
+            # Update patient demographics if extracted from report and currently missing
+            patient_record = await db.get(Patient, patient_id)
+            if patient_record:
+                if result.patient_age and not patient_record.age:
+                    patient_record.age = result.patient_age
+                    log.info("patient_age_updated", patient_id=str(patient_id), age=result.patient_age)
+                if result.patient_gender and not patient_record.gender:
+                    patient_record.gender = result.patient_gender
+                    log.info("patient_gender_updated", patient_id=str(patient_id), gender=result.patient_gender)
+            
             await db.commit()
 
             duration_ms = round((_time.perf_counter() - t0) * 1000)
@@ -288,3 +298,70 @@ async def get_report_results(
         )
         for r in results
     ]
+
+
+# ── Download Generated Report ─────────────────────────────────────────────────
+
+@router.get("/download/{filename}")
+async def download_generated_report(
+    filename: str,
+    patient: Patient = Depends(get_current_patient),
+):
+    """
+    Download a generated PDF report.
+    
+    Security: Only allow access to files in data/generated_reports/
+    Filenames must match pattern: medical_report_*.pdf or medical_report_*.txt
+    """
+    from fastapi.responses import FileResponse
+    import re
+    
+    # Validate filename to prevent directory traversal
+    if not re.match(r'^medical_report_[a-zA-Z0-9_]+\.(pdf|txt)$', filename):
+        log.warning(
+            "download_invalid_filename",
+            filename=filename,
+            patient_id=str(patient.patient_id)
+        )
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Invalid filename format"
+        )
+    
+    # Construct safe path
+    report_dir = _PROJECT_ROOT / "data" / "generated_reports"
+    file_path = report_dir / filename
+    
+    # Verify file exists and is within allowed directory
+    try:
+        file_path = file_path.resolve(strict=True)
+        if not str(file_path).startswith(str(report_dir.resolve())):
+            raise ValueError("Path traversal attempt")
+    except (ValueError, FileNotFoundError) as exc:
+        log.warning(
+            "download_file_not_found",
+            filename=filename,
+            patient_id=str(patient.patient_id),
+            error=str(exc)
+        )
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Report file not found"
+        )
+    
+    log.info(
+        "report_download",
+        filename=filename,
+        patient_id=str(patient.patient_id),
+        size_kb=round(file_path.stat().st_size / 1024, 1)
+    )
+    
+    # Determine content type
+    content_type = "application/pdf" if filename.endswith(".pdf") else "text/plain"
+    
+    return FileResponse(
+        path=str(file_path),
+        media_type=content_type,
+        filename=filename,
+        headers={"Content-Disposition": f"attachment; filename={filename}"}
+    )

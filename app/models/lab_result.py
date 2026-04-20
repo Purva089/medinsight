@@ -21,8 +21,8 @@ class LabResult(Base, TimestampMixin):
     __tablename__ = "lab_results"
     __table_args__ = (
         UniqueConstraint(
-            "patient_id", "test_name", "report_date",
-            name="uq_lab_result_per_day",
+            "report_id", "test_name",
+            name="uq_lab_result_per_report",
         ),
     )
 

@@ -1,0 +1,84 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual environments
+.venv/
+.venv312/
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Cache and temporary files
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.log
+
+# Documentation (keep only essential docs)
+*.md
+!README.md
+!DOCKER_DEPLOYMENT.md
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Data files (upload during runtime or use volumes)
+data/uploaded_files/
+data/custom_reports/
+data/demo_reports/
+*.pdf
+*.csv
+
+# Node modules (if any)
+node_modules/
+
+# Test files
+tests/
+*.test.py
+test_*.py
+
+# Docker
+docker-compose*.yml
+Dockerfile*
+.dockerignore
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+azure-pipelines.yml
+azure-deploy.yml
+
+# Alembic (migrations should be baked into image)
+# Keep alembic/ but ignore version history if needed
+# alembic/versions/*.py

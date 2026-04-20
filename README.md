@@ -269,6 +269,43 @@ TSH, Free T3, Free T4
 
 ---
 
+## � Deployment
+
+### Docker (Local Development)
+
+```bash
+# Quick start
+docker-compose up --build
+
+# Access
+# - Frontend: http://localhost:8501
+# - Backend: http://localhost:8000
+# - API Docs: http://localhost:8000/docs
+```
+
+### Azure Container Apps (Production)
+
+```bash
+# 1. Install Azure CLI
+winget install Microsoft.AzureCLI  # Windows
+brew install azure-cli             # Mac
+
+# 2. Login and run setup
+az login
+.\azure-setup.ps1  # Windows
+./azure-setup.sh   # Linux/Mac
+
+# 3. Configure GitHub Secrets and push
+git push origin main
+```
+
+**📚 Full Documentation:**
+- **Quick Start**: [QUICKSTART.md](QUICKSTART.md) - 3-minute Docker setup
+- **Comprehensive Guide**: [DOCKER_DEPLOYMENT.md](DOCKER_DEPLOYMENT.md) - Complete deployment instructions
+- **Summary**: [DEPLOYMENT_SUMMARY.md](DEPLOYMENT_SUMMARY.md) - Architecture & cost breakdown
+
+---
+
 ## 🔒 Security
 
 - JWT-based authentication with secure token generation
@@ -277,6 +314,8 @@ TSH, Free T3, Free T4
 - SQL injection protection (parameterized queries)
 - CORS middleware configured for trusted origins
 - Rate limiting (TODO: add Redis-based limiter)
+- Docker non-root user containers
+- Azure managed HTTPS certificates
 
 ---
 

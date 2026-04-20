@@ -23,6 +23,8 @@ def render_trend_chart(
     ref_high: float | None = None,
     reference_low: float | None = None,
     reference_high: float | None = None,
+    chart_index: int = 0,  # Chart index within message
+    message_id: str = "0",  # Unique message identifier
 ) -> None:
     """Render an indigo-styled Plotly chart directly into Streamlit."""
     if not data_points:
@@ -149,4 +151,6 @@ def render_trend_chart(
         height=340,
     )
 
-    st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
+    # Use unique key based on message ID + chart index + test name to avoid duplicate ID errors
+    chart_key = f"trend_chart_{message_id}_{chart_index}_{test_name.lower().replace(' ', '_').replace('(', '').replace(')', '')}"
+    st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False}, key=chart_key)

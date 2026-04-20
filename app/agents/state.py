@@ -41,9 +41,11 @@ class MedInsightState(TypedDict):
     needs_rag:   bool    # should RAG agent run?
     needs_sql:   bool    # should Text2SQL agent run?
     needs_trend: bool    # should Trend agent run?
+    needs_report_generation: bool  # should PDF report generator run?
 
     # ── trend ────────────────────────────────────────────────────────────────
-    trend_results: list[dict]         # list of TrendResult.model_dump()
+    trend_results: list[dict]       # list of TrendResult.model_dump()
+    mentioned_tests: list[str]      # test names extracted from question for trend filtering
 
     # ── text-to-SQL ──────────────────────────────────────────────────────────
     sql_query_generated: str | None

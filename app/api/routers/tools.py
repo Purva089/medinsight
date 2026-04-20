@@ -674,13 +674,17 @@ async def _handle_get_trend_analysis(
         "extraction_confidence": 0.0,
         "rag_chunks": [],
         "rag_context": "",
+        "others_tests": [],
         "disclaimer_required": False,
+        "needs_rag": False,
+        "needs_sql": False,
+        "needs_trend": True,
         "trend_results": [],
         "sql_query_generated": None,
         "sql_results": [],
         "final_response": {},
-        "parallel_complete": False,
         "errors": [],
+        "a2a_messages": [],
     }
     
     trend_data = await request_trend_data(

@@ -25,17 +25,24 @@ def _poll(report_id: str):
 
     for i, step in enumerate(steps):
         bar.progress((i+1)*25, text=step)
-        time.sleep(0.9)
+        time.sleep(1.5)  # Increased from 0.9 to 1.5 seconds for Groq API processing
         try:
             r = requests.get(f"{_API}/reports/{report_id}/results", headers=_hdr(), timeout=10)
             if r.ok:
                 d = _normalise(r.json())
-                if d.get("status")=="completed" or d.get("results"):
-                    bar.progress(100, text="Complete ✓"); return d
+                results = d.get("results", []) if isinstance(d.get("results"), list) else []
+                # Only consider complete if we actually have test results
+                if len(results) > 0:
+                    bar.progress(100, text="Complete ✓")
+                    return d
         except: pass
+    
+    # Final check after all steps - give it one more try with longer timeout
     try:
-        r = requests.get(f"{_API}/reports/{report_id}/results", headers=_hdr(), timeout=15)
-        if r.ok: return _normalise(r.json())
+        r = requests.get(f"{_API}/reports/{report_id}/results", headers=_hdr(), timeout=20)
+        if r.ok:
+            d = _normalise(r.json())
+            return d
     except: pass
     return None
 
@@ -45,6 +52,12 @@ def _show_results(data) -> None:
     if isinstance(data, list):
         data = {"results": data}
     tests = data.get("results") or data.get("extracted_tests") or []
+    
+    # Don't show success message if no tests found (extraction may still be processing)
+    if not tests:
+        st.info("⏳ Extraction in progress... Refresh in a few seconds.")
+        return
+    
     st.markdown(
         f'<div style="background:#F0FDF4;border:1px solid #BBF7D0;'
         f'border-left:4px solid {SUCCESS};border-radius:12px;'

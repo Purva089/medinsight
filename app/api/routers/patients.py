@@ -104,30 +104,27 @@ async def get_my_latest_results(
     db:      AsyncSession  = Depends(get_db),
 ) -> list[dict]:
     """
-    Return the most recent value per lab test — a snapshot summary.
+    Return all lab tests from the single latest uploaded report only.
     Useful for a dashboard overview card.
     """
-    # Subquery: latest report_date per test for this patient
     from sqlalchemy import func
-    subq = (
-        select(
-            LabResult.test_name,
-            func.max(LabResult.report_date).label("max_date"),
-        )
+    # Subquery: find the report_id with the most recent report_date for this patient
+    latest_report_subq = (
+        select(LabResult.report_id)
         .where(LabResult.patient_id == patient.patient_id)
-        .group_by(LabResult.test_name)
-        .subquery()
+        .group_by(LabResult.report_id)
+        .order_by(func.max(LabResult.report_date).desc())
+        .limit(1)
+        .scalar_subquery()
     )
 
     rows = (
         await db.execute(
             select(LabResult)
-            .join(
-                subq,
-                (LabResult.test_name == subq.c.test_name)
-                & (LabResult.report_date == subq.c.max_date),
+            .where(
+                LabResult.patient_id == patient.patient_id,
+                LabResult.report_id == latest_report_subq,
             )
-            .where(LabResult.patient_id == patient.patient_id)
             .order_by(LabResult.test_name)
         )
     ).scalars().all()

@@ -8,26 +8,16 @@ Features:
 - Automatic fallback model switching on rate limits
 - Comprehensive performance logging with metrics
 - Token usage tracking
-- Retry with exponential backoff
+- Retry with 1-second wait between attempts (fast recovery)
 """
 from __future__ import annotations
 
 import time
-from typing import Any
 
 from pydantic import SecretStr
 
-from tenacity import (
-    retry,
-    retry_if_exception_type,
-    stop_after_attempt,
-    wait_exponential,
-    before_sleep_log,
-    RetryCallState,
-)
-
 from app.core.config import settings
-from app.core.logging import get_logger, log_metric, log_performance
+from app.core.logging import get_logger, log_metric
 
 log = get_logger(__name__)
 
@@ -45,18 +35,6 @@ _MAX_TOKENS: dict[str, int] = {
 
 def _get_max_tokens(key: str) -> int:
     return _MAX_TOKENS.get(key, 512)
-
-
-# ── retry helpers ─────────────────────────────────────────────────────────────
-
-def _log_retry(retry_state: RetryCallState) -> None:
-    exc = retry_state.outcome.exception() if retry_state.outcome else None
-    log.warning(
-        "llm_retry_attempt",
-        attempt=retry_state.attempt_number,
-        error_type=type(exc).__name__ if exc else "unknown",
-        wait_seconds=round(retry_state.next_action.sleep, 1) if retry_state.next_action else 0,  # type: ignore[union-attr]
-    )
 
 
 # ── LLM Service ───────────────────────────────────────────────────────────────
@@ -138,6 +116,25 @@ class LLMService:
         return result
 
     async def _groq_with_retry(self, prompt: str, model: str, max_tokens: int) -> str:
+        """
+        Call Groq with retry logic and automatic fallback model switching.
+        
+        Retry strategy:
+        - 4 attempts total (2 with main model, 2 with fallback)
+        - 1 second wait between retries
+        - Immediate switch to fallback on rate limit (429 errors)
+        
+        Args:
+            prompt: The input prompt
+            model: The Groq model to use (e.g., llama-3.3-70b-versatile)
+            max_tokens: Maximum tokens in response
+            
+        Returns:
+            The LLM response text
+            
+        Raises:
+            RuntimeError: If all retries are exhausted
+        """
         import asyncio
         from langchain_groq import ChatGroq  # type: ignore[import]
         from langchain_core.messages import HumanMessage  # type: ignore[import]
@@ -176,7 +173,7 @@ class LLMService:
                     )
                     continue  # Try immediately with fallback model
                 
-                wait = 1  # flat 1s between retries — fast recovery
+                wait = 1  # Flat 1s between retries for fast recovery
                 log.warning(
                     "llm_retry_attempt",
                     provider="groq",
@@ -189,7 +186,43 @@ class LLMService:
                 )
                 if attempt < 4:
                     await asyncio.sleep(wait)
+        
         raise RuntimeError(f"Groq exhausted retries: {last_exc}") from last_exc
+
+
+    async def call_fast(self, prompt: str, max_tokens: int = 10) -> str:
+        """
+        Ultra-fast LLM call for simple tasks like classification.
+        Uses the fallback (smaller/faster) model with minimal tokens.
+        """
+        import asyncio
+        from langchain_groq import ChatGroq
+        from langchain_core.messages import HumanMessage
+
+        model = settings.fallback_reasoning_model or settings.reasoning_model
+        log.info("llm_fast_call", model=model, prompt_len=len(prompt))
+        t0 = time.monotonic()
+
+        try:
+            llm = ChatGroq(
+                model=model,
+                api_key=SecretStr(settings.groq_api_key),
+                temperature=0.0,  # Deterministic for classification
+                max_tokens=max_tokens,
+                timeout=10,  # 10 second timeout
+            )
+            response = await asyncio.wait_for(
+                llm.ainvoke([HumanMessage(content=prompt)]),
+                timeout=12,
+            )
+            content = response.content
+            result = content.strip() if isinstance(content, str) else str(content)
+            duration_ms = round((time.monotonic() - t0) * 1000)
+            log.info("llm_fast_complete", model=model, duration_ms=duration_ms, result=result[:50])
+            return result
+        except Exception as exc:
+            log.error("llm_fast_error", error=str(exc)[:100])
+            raise RuntimeError(f"Fast LLM call failed: {exc}") from exc
 
 
 # Module-level singleton — import and use this instead of LLMService()

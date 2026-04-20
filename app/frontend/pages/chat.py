@@ -1,6 +1,6 @@
 """Chat page — ChatGPT-style bubbles + live progress."""
 from __future__ import annotations
-import os, time, requests
+import os, time, requests, re
 import html
 import streamlit as st
 from app.frontend.api_client import API_BASE as _API, auth_headers as _hdr
@@ -12,7 +12,38 @@ from app.frontend.components.theme import (
 from app.frontend.components.trend_chart import render_trend_chart
 
 
-@st.cache_data(ttl=30)
+def _strip_html(text: str) -> str:
+    """Remove HTML tags from text to display as plain text."""
+    if not text:
+        return ""
+    # Remove HTML tags
+    clean = re.sub(r'<[^>]+>', '', text)
+    # Clean up whitespace
+    clean = re.sub(r'\s+', ' ', clean).strip()
+    return clean
+
+
+def _is_empty_content(text: str) -> bool:
+    """Check if content is empty or just placeholder text."""
+    if not text:
+        return True
+    lower = text.lower().strip()
+    # Filter out common placeholder/empty values
+    empty_patterns = [
+        "none", "null", "n/a", "na", "no data", "no trend",
+        "no guidelines", "not available", "no trend data available",
+        "no relevant guideline", "no relevant guidelines",
+        "<relevant guideline", "<guideline", "<trend", "<warning",
+        "empty string", "no specific", "not applicable",
+    ]
+    # Check exact match or starts with any pattern
+    for p in empty_patterns:
+        if lower == p or lower.startswith(p):
+            return True
+    # Also check if it's very short placeholder-like text
+    if len(lower) < 5 and lower in ("", "-", ".", "...", "--"):
+        return True
+    return False
 
 
 @st.cache_data(ttl=30)
@@ -78,15 +109,17 @@ def _ask(question: str):
 
 
 def _section_card(title: str, content: str) -> str:
+    """Render a section card (Guidelines, Watch for, etc.) as a styled HTML block."""
     if not content:
         return ""
     safe_title = html.escape(title)
     safe_content = html.escape(content)
     return (
-        f'<div class="med-card-soft" style="padding:14px 16px;margin-top:12px">'
+        f'<div style="margin-left:46px;margin-top:10px">'  # Indent to align with message
+        f'<div class="med-card-soft" style="padding:14px 16px">'
         f'<div class="med-kicker" style="margin-bottom:8px">{safe_title}</div>'
-        f'<div class="med-muted" style="color:{TEXT};line-height:1.75;white-space:pre-wrap">{safe_content}</div>'
-        f'</div>'
+        f'<div style="color:{TEXT};line-height:1.75;white-space:pre-wrap">{safe_content}</div>'
+        f'</div></div>'
     )
 
 
@@ -124,21 +157,40 @@ def _show_compact_progress() -> None:
 
 
 def _render_ai(msg: dict) -> None:
+    import time
     d    = msg.get("data") or {}
-    # API returns: {"response": {"direct_answer":..., "confidence":..., ...}, "trend_data":[...]}
-    resp = d.get("response") if isinstance(d.get("response"), dict) else {}
+    # API returns: {"response": {"direct_answer":..., "confidence":..., ...}, "trend_data":[...], "pdf_data": {...}}
+    raw_resp = d.get("response")
+    resp: dict = raw_resp if isinstance(raw_resp, dict) else {}
     ans  = resp.get("direct_answer") or msg.get("content") or ""
     conf = resp.get("confidence") or "low"
     intent = (resp.get("intent_handled") or "general").replace("_"," ").title()
-    guidelines = resp.get("guideline_context") or ""
-    trend_sum  = resp.get("trend_summary") or ""
-    watch_for  = resp.get("watch_for") or ""
+    
+    # Extract PDF data from top-level response (not inside resp)
+    pdf_data = d.get("pdf_data")  # This is at same level as "response" and "trend_data"
+    
+    # Clean up answer text - remove literal placeholder strings
+    ans = ans.replace("**No watch_for or sources available.**", "").strip()
+    ans = ans.replace("No watch_for or sources available.", "").strip()
+    ans = ans.replace("**No watch_for available.**", "").strip()
+    ans = ans.replace("No watch_for available.", "").strip()
+    
+    # Get clean text (strip any HTML and filter empty/placeholder values)
+    guidelines_raw = _strip_html(resp.get("guideline_context") or "")
+    guidelines = "" if _is_empty_content(guidelines_raw) else guidelines_raw
+    trend_sum_raw = _strip_html(resp.get("trend_summary") or "")
+    trend_sum = "" if _is_empty_content(trend_sum_raw) else trend_sum_raw
+    watch_for_raw = _strip_html(resp.get("watch_for") or "")
+    watch_for = "" if _is_empty_content(watch_for_raw) else watch_for_raw
     sources    = resp.get("sources") or []
     trend_data = d.get("trend_data") or []
     cbadge     = confidence_badge(conf)
     safe_intent = html.escape(intent)
+    
+    # Generate unique message ID for chart keys
+    msg_id = str(int(time.time() * 1000))  # Millisecond timestamp
 
-    # AI card
+    # AI card - simplified layout
     st.markdown(
         f'''<div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:16px">
   <div style="background:linear-gradient(135deg,{PRIMARY},{SECONDARY});
@@ -151,33 +203,82 @@ def _render_ai(msg: dict) -> None:
                 <span class="med-kicker">{safe_intent}</span>
         <span style="margin-left:auto">{cbadge}</span>
       </div>
-            <div class="med-answer">{ans}</div>
-      {_section_card("Guideline context", guidelines)}
-      {_section_card("Trend analysis", trend_sum)}
-      {_section_card("Watch for", watch_for)}
-      {'' if not sources else ''}
+      <div class="med-answer" style="padding:6px 0;line-height:1.75;white-space:pre-wrap">{ans.replace(chr(10), "<br>")}</div>
     </div>''',
         unsafe_allow_html=True,
     )
     
-    # Render trend charts if we have trend data
-    if trend_data:
-        st.markdown(
-            f'<div class="med-card-soft" style="padding:14px 16px;margin-top:12px">'
-            f'<div class="med-kicker" style="margin-bottom:12px">📊 Trend Visualizations</div>'
-            f'</div>',
-            unsafe_allow_html=True,
-        )
-        # Create columns for charts (2 per row)
-        chart_cols = st.columns(2)
-        for idx, trend in enumerate(trend_data[:6]):  # Limit to 6 charts
-            test_name = trend.get("test_name", "Unknown Test")
-            data_points = trend.get("data_points") or trend.get("history") or []
-            unit = trend.get("unit", "")
-            ref_low = trend.get("reference_low") or trend.get("ref_low")
-            ref_high = trend.get("reference_high") or trend.get("ref_high")
+    # Handle PDF download from response data (extracted earlier from d.get("pdf_data"))
+    if pdf_data and pdf_data.get("bytes"):
+        # Decode base64 PDF bytes
+        try:
+            import base64
+            pdf_bytes = base64.b64decode(pdf_data["bytes"])
+            filename = pdf_data.get("filename", "medical_report.pdf")
             
-            if data_points and len(data_points) >= 2:
+            # Add some spacing and render button inside the layout
+            st.markdown('<div style="padding-left:46px;margin-top:12px">', unsafe_allow_html=True)
+            st.download_button(
+                label="📥 Download PDF Report",
+                data=pdf_bytes,
+                file_name=filename,
+                mime="application/pdf",
+                use_container_width=False,
+                key=f"dl_{msg_id}"
+            )
+            st.markdown('</div>', unsafe_allow_html=True)
+        except Exception as e:
+            st.error(f"Error preparing PDF download: {str(e)[:100]}")
+    
+    # Close the AI card container
+    st.markdown('</div></div>', unsafe_allow_html=True)
+    
+    # Render Guidelines only if relevant and not for normal values
+    show_guidelines = guidelines and not (
+        "within the normal range" in ans.lower() or
+        "within normal range" in ans.lower() or
+        "is normal" in ans.lower() or
+        "are normal" in ans.lower() or
+        (intent.lower() == "rag" and ("normal" in ans.lower() and len(ans.split()) < 100))
+    )
+    if show_guidelines:
+        st.markdown(_section_card("Guidelines", guidelines), unsafe_allow_html=True)
+    
+    # Show watch_for only if it's actionable (not for comparative/informational queries)
+    show_watch_for = watch_for and not (
+        "compare" in (resp.get("intent_handled") or "").lower() or
+        "Notable changes" in ans  # Comparative summary
+    )
+    if show_watch_for:
+        st.markdown(_section_card("Watch for", watch_for), unsafe_allow_html=True)
+    
+    # Show trend charts ONLY for trend intent queries (not for all queries)
+    # This prevents duplicate charts from appearing in both trend summary text and visualization section
+    if trend_data and len(trend_data) > 0 and intent and "trend" in intent.lower():
+        # Filter to only trends with valid data points
+        valid_trends = [
+            t for t in trend_data 
+            if (t.get("data_points") or t.get("history")) and 
+               len(t.get("data_points") or t.get("history") or []) >= 2
+        ]
+        
+        if valid_trends:
+            st.markdown(
+                f'<div style="margin-left:46px;margin-top:10px">'
+                f'<div class="med-card-soft" style="padding:14px 16px">'
+                f'<div class="med-kicker" style="margin-bottom:12px">📊 Trend Visualizations</div>'
+                f'</div></div>',
+                unsafe_allow_html=True,
+            )
+            # Create columns for charts (2 per row)
+            chart_cols = st.columns(2)
+            for idx, trend in enumerate(valid_trends[:4]):  # Limit to 4 charts
+                test_name = trend.get("test_name", "Unknown Test")
+                data_points = trend.get("data_points") or trend.get("history") or []
+                unit = trend.get("unit", "")
+                ref_low = trend.get("reference_low") or trend.get("ref_low")
+                ref_high = trend.get("reference_high") or trend.get("ref_high")
+                
                 with chart_cols[idx % 2]:
                     render_trend_chart(
                         test_name=test_name,
@@ -185,10 +286,9 @@ def _render_ai(msg: dict) -> None:
                         unit=unit,
                         ref_low=ref_low,
                         ref_high=ref_high,
+                        chart_index=idx,
+                        message_id=msg_id,  # Add unique message ID
                     )
-    
-    # Try to render charts for abnormal values from extracted tests
-    _render_abnormal_trends(d)
     
     if sources:
         st.markdown(
@@ -208,73 +308,6 @@ def _render_ai(msg: dict) -> None:
         unsafe_allow_html=True,
     )
     st.markdown("</div></div>", unsafe_allow_html=True)
-
-
-def _render_abnormal_trends(data: dict) -> None:
-    """Render trend charts for abnormal values if we have historical data."""
-    tok = st.session_state.get("jwt_token", "")
-    if not tok:
-        return
-    
-    # Get all lab results to find abnormal ones
-    all_results = _get_all_lab_results(tok)
-    if not all_results:
-        return
-    
-    # Find abnormal values
-    abnormal_tests = [
-        r for r in all_results 
-        if (r.get("status") or "").lower() in ("high", "low", "critical")
-    ]
-    
-    if not abnormal_tests:
-        return
-    
-    # Limit to first 4 abnormal tests
-    abnormal_tests = abnormal_tests[:4]
-    
-    st.markdown(
-        f'<div class="med-card-soft" style="padding:14px 16px;margin-top:12px">'
-        f'<div class="med-kicker" style="margin-bottom:8px">📈 Historical Trends for Abnormal Values</div>'
-        f'<p style="font-size:0.8rem;color:{TEXT_SEC};margin-bottom:12px">'
-        f'Tracking how your abnormal values have changed over time</p>'
-        f'</div>',
-        unsafe_allow_html=True,
-    )
-    
-    # Create columns for charts
-    chart_cols = st.columns(2)
-    charts_rendered = 0
-    
-    for idx, test in enumerate(abnormal_tests):
-        test_name = test.get("test_name", "")
-        if not test_name:
-            continue
-        
-        # Get historical data for this test
-        history = _get_lab_history(tok, test_name)
-        if not history or len(history) < 2:
-            # If no history, create single-point data
-            history = [{
-                "date": test.get("report_date") or test.get("created_at", "")[:10],
-                "value": test.get("value"),
-                "status": test.get("status")
-            }]
-        
-        # Ensure we have at least 2 points for a trend line
-        if len(history) >= 1:
-            with chart_cols[charts_rendered % 2]:
-                render_trend_chart(
-                    test_name=test_name,
-                    data_points=history,
-                    unit=test.get("unit", ""),
-                    ref_low=test.get("reference_range_low") or test.get("ref_low"),
-                    ref_high=test.get("reference_range_high") or test.get("ref_high"),
-                )
-            charts_rendered += 1
-        
-        if charts_rendered >= 4:
-            break
 
 
 def show_chat_page() -> None:
@@ -392,14 +425,26 @@ def show_chat_page() -> None:
                 q_full = (item.get("question") or "").strip()
                 dt = (item.get("created_at") or "")[:10]
                 q_show = (q_full[:64] + "...") if len(q_full) > 64 else (q_full or "Untitled")
-                _hkey = f"h_{item.get('id') or _hi}"
+                _hkey = f"h_{item.get('consult_id') or item.get('id') or _hi}"
                 if st.button(f"🗨️  {q_show}", use_container_width=True, key=_hkey):
+                    # answer is a plain string from the history API
+                    answer_text = item.get("answer") or ""
                     st.session_state["stm_messages"] = [
                         {"role": "user", "content": item.get("question", "")},
                         {
                             "role": "assistant",
-                            "content": item.get("response", {}).get("direct_answer", "") if isinstance(item.get("response"), dict) else item.get("answer", ""),
-                            "data": item,
+                            "content": answer_text,
+                            "data": {
+                                "response": {
+                                    "direct_answer": answer_text,
+                                    "confidence": item.get("confidence_level", "low"),
+                                    "intent_handled": item.get("intent_handled", "general"),
+                                    "guideline_context": "",
+                                    "trend_summary": "",
+                                    "watch_for": "",
+                                    "sources": item.get("sources_cited") or [],
+                                }
+                            },
                         },
                     ]
                     st.rerun()

@@ -55,6 +55,7 @@ class AskResponse(BaseModel):
     request_id: str
     response: ReportResponse
     trend_data: list[TrendResult] = Field(default_factory=list)
+    pdf_data: dict | None = None  # PDF filename + base64 bytes for download
 
 
 # ── LTM helpers ───────────────────────────────────────────────────────────────
@@ -190,7 +191,6 @@ async def ask(
         "blood_type": patient.blood_type,
         "medical_condition": patient.medical_condition,
         "medication": patient.medication,
-        "kaggle_test_result": patient.kaggle_test_result,
     }
 
     # Fetch Lab Results for the active report, or fall back to the latest uploaded report.
@@ -274,6 +274,8 @@ async def ask(
         "needs_rag":   False,
         "needs_sql":   False,
         "needs_trend": False,
+        "needs_report_generation": False,  # Required by MedInsightState
+        "mentioned_tests": [],  # Required by MedInsightState
         "trend_results": [],
         "sql_query_generated": None,
         "sql_results": [],
@@ -292,7 +294,7 @@ async def ask(
     _t0 = _time.perf_counter()
 
     try:
-        with log_performance(log, "langgraph_pipeline", warn_threshold_ms=3000):
+        with log_performance(log, "langgraph_pipeline", warn_threshold_ms=30000):
             final_state: MedInsightState = await compiled_graph.ainvoke(initial_state)  # type: ignore[assignment]
     except Exception as exc:
         log.error(
@@ -388,9 +390,13 @@ async def ask(
         },
     )
 
+    # Extract PDF data if present (for report generation)
+    pdf_data = raw_response.get("pdf_data")
+    
     return AskResponse(
         session_id=session_id,
         request_id=request_id,
         response=report_response,
         trend_data=trend_data,
+        pdf_data=pdf_data,
     )

@@ -125,11 +125,37 @@ def classify_test(test_name: str) -> str | None:
 
     Usage:
         cat = classify_test("SGPT")   # → "liver"
+        cat = classify_test("SGPT (ALT)")  # → "liver"
         cat = classify_test("Troponin I")  # → None (excluded)
         cat = classify_test("Vitamin D")   # → "others"
     """
+    import re
     normalised = test_name.strip().lower()
+    
+    # Direct lookup
     result = CATEGORY_MAP.get(normalised)
-    if result == _EXCLUDED:
-        return None          # signal: exclude this test
-    return result or "others"
+    if result is not None:
+        return None if result == _EXCLUDED else result
+    
+    # Try without parentheses: "SGPT (ALT)" → "sgpt"
+    base_name = re.sub(r'\s*\([^)]*\)', '', normalised).strip()
+    result = CATEGORY_MAP.get(base_name)
+    if result is not None:
+        return None if result == _EXCLUDED else result
+    
+    # Try each part if there are parentheses: "SGPT (ALT)" → try "sgpt", then "alt"
+    if '(' in normalised:
+        parts = re.split(r'[()\s]+', normalised)
+        for part in parts:
+            part = part.strip()
+            if part:
+                result = CATEGORY_MAP.get(part)
+                if result is not None:
+                    return None if result == _EXCLUDED else result
+    
+    # Try substring match for common patterns
+    for key, cat in CATEGORY_MAP.items():
+        if key in normalised or normalised in key:
+            return None if cat == _EXCLUDED else cat
+    
+    return "others"

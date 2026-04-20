@@ -41,7 +41,7 @@ def _validate_select_only(sql: str) -> bool:
         if not statements:
             return False
         for stmt in statements:
-            if not isinstance(stmt, sqlglot.expressions.Select):
+            if not isinstance(stmt, sqlglot.expressions.Select):  # type: ignore[attr-defined]
                 return False
         return True
     except Exception:
@@ -61,6 +61,7 @@ async def text_to_sql_node(state: MedInsightState) -> MedInsightState:
     question = state["current_question"]
 
     schema_desc = _build_schema_description()
+    
     prompt = PROMPT_TEXT_TO_SQL.format(
         patient_id=patient_id,
         schema_description=schema_desc,
@@ -127,6 +128,8 @@ async def text_to_sql_node(state: MedInsightState) -> MedInsightState:
 
     state["sql_query_generated"] = sql_query
     state["sql_results"] = sql_results
+    
+    # SQL agent's job is done - synthesis_agent will format the response
     log.info(
         "sql_agent_complete",
         patient_id=patient_id,

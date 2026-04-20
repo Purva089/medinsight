@@ -22,6 +22,7 @@ import hashlib
 import json
 import re
 from pathlib import Path
+from typing import Any
 
 from app.core.config import settings
 from app.core.logging import get_logger
@@ -33,17 +34,45 @@ log = get_logger(__name__)
 # ── Gemini prompts ────────────────────────────────────────────────────────────
 
 _EXTRACTION_PROMPT = """\
-You are a medical data extraction specialist. Extract all lab test results from the following lab report text.
+You are a medical data extraction specialist. Extract patient demographics AND all lab test results from the following lab report text.
 
-Return ONLY a valid JSON array — no explanation, no markdown, no code fences.
-Each object in the array must have exactly these keys:
-  - test_name       (string)
-  - value           (number)
-  - unit            (string)
-  - reference_range_low   (number or null)
-  - reference_range_high  (number or null)
-  - status          (one of: "normal", "high", "low", "critical")
-  - confidence      (number between 0.0 and 1.0)
+IMPORTANT RULES:
+1. Look for ANY medical test names with numeric values (hemoglobin, glucose, cholesterol, WBC, RBC, platelets, etc.)
+2. Accept ANY format: tables, lists, paragraphs, or unstructured text
+3. If reference ranges are not explicitly stated, use null
+4. If status is not stated, infer from value vs ranges (if available), otherwise use "normal"
+5. Extract partial data - even if some fields are missing, include the test
+6. Common units: g/dL, mg/dL, /μL, mmol/L, U/L, %, etc.
+7. Look for patient demographics: name, age, gender (usually at top of report)
+
+Return ONLY a valid JSON object with this structure — no explanation, no markdown, no code fences:
+{{
+  "patient_name": "string or null",
+  "patient_age": number or null,
+  "patient_gender": "Male", "Female", or null,
+  "tests": [
+    {{
+      "test_name": "string",
+      "value": number,
+      "unit": "string",
+      "reference_range_low": number or null,
+      "reference_range_high": number or null,
+      "status": "normal" | "high" | "low" | "critical",
+      "confidence": number between 0.0 and 1.0
+    }}
+  ]
+}}
+
+Example valid JSON:
+{{
+  "patient_name": "Ajay Singh",
+  "patient_age": 28,
+  "patient_gender": "Female",
+  "tests": [
+    {{"test_name":"Hemoglobin","value":13.5,"unit":"g/dL","reference_range_low":12.0,"reference_range_high":16.0,"status":"normal","confidence":0.95}},
+    {{"test_name":"Glucose","value":110,"unit":"mg/dL","reference_range_low":null,"reference_range_high":null,"status":"normal","confidence":0.8}}
+  ]
+}}
 
 Lab report text:
 {text}
@@ -116,6 +145,7 @@ class PDFExtractor:
                 "empty_text_extracted",
                 report_id=report_id,
                 method=method,
+                raw_text_preview="[EMPTY]",
             )
             from typing import cast, Literal as _Literal
             return ExtractionResult(
@@ -123,13 +153,22 @@ class PDFExtractor:
                 patient_id=patient_id,
                 extraction_method=cast(_Literal["pymupdf", "groq", "regex"], method),
                 raw_text="",
-                errors=["No text could be extracted from the PDF."],
+                errors=["No text could be extracted from the PDF. This may be a scanned/image-based PDF that requires OCR."],
             )
+        
+        # Log extracted text for debugging (first 500 chars)
+        log.info(
+            "text_extracted_preview",
+            report_id=report_id,
+            char_count=len(raw_text),
+            preview=raw_text[:500],
+        )
 
         # Try Groq-powered structured extraction first; fall back to
         # deterministic regex parser if Groq is unavailable.
+        patient_demo: dict[str, Any] = {}
         try:
-            tests, errors = await self._parse_with_groq(raw_text, report_id)
+            tests, errors, patient_demo = await self._parse_with_groq(raw_text, report_id)
         except RuntimeError as groq_err:
             log.warning(
                 "groq_unavailable_using_regex",
@@ -168,6 +207,9 @@ class PDFExtractor:
             extraction_method=cast(_Literal["pymupdf", "groq", "regex"], method),
             raw_text=raw_text,
             errors=errors,
+            patient_name=patient_demo.get("patient_name"),
+            patient_age=patient_demo.get("patient_age"),
+            patient_gender=patient_demo.get("patient_gender"),
         )
 
     # ── text extraction ───────────────────────────────────────────────────────
@@ -182,6 +224,7 @@ class PDFExtractor:
         raw_text = ""
         try:
             raw_text = await asyncio.to_thread(self._pymupdf_extract, file_bytes)
+            print("raw text", raw_text[:300])
             char_count = len(raw_text.strip())
             log.info("pymupdf_success", char_count=char_count)
             if char_count >= 50:
@@ -206,15 +249,18 @@ class PDFExtractor:
 
     async def _parse_with_groq(
         self, raw_text: str, report_id: str
-    ) -> tuple[list[ExtractedTest], list[str]]:
+    ) -> tuple[list[ExtractedTest], list[str], dict[str, Any]]:
         """
         Send raw_text to Groq (llama-3.3-70b) for structured JSON extraction.
         Much faster and no daily quota limits compared to Gemini.
         Falls back to regex if Groq is unavailable.
+        
+        Returns: (tests, errors, patient_demographics)
         """
         from groq import Groq  # type: ignore[import]
 
         errors: list[str] = []
+        patient_demo: dict[str, Any] = {}
         prompt = _EXTRACTION_PROMPT.format(text=raw_text[:6000])  # stay within context
 
         try:
@@ -228,12 +274,20 @@ class PDFExtractor:
                 )
             )
             response_text = response.choices[0].message.content or ""
+            print("raw response", response_text[:300])
         except Exception as exc:
             raise RuntimeError(f"Groq API error during extraction: {exc}") from exc
 
-        tests, parse_error = self._parse_json_response(response_text)
+        log.info(
+            "groq_extraction_response",
+            report_id=report_id,
+            response_len=len(response_text),
+            response_preview=response_text[:300],
+        )
+
+        tests, parse_error, patient_demo = self._parse_json_response(response_text)
         if parse_error is None:
-            return tests, errors
+            return tests, errors, patient_demo
 
         # Self-heal: ask Groq to fix its own malformed JSON
         errors.append(f"Initial Groq parse failed ({parse_error}); attempting self-heal.")
@@ -251,14 +305,14 @@ class PDFExtractor:
             healed_text = healed.choices[0].message.content or ""
         except Exception as exc:
             errors.append(f"Groq self-heal failed: {exc}")
-            return [], errors
+            return [], errors, {}
 
-        tests, parse_error2 = self._parse_json_response(healed_text)
+        tests, parse_error2, patient_demo = self._parse_json_response(healed_text)
         if parse_error2 is None:
-            return tests, errors
+            return tests, errors, patient_demo
 
         errors.append(f"Self-heal also failed: {parse_error2}")
-        return self._partial_salvage(response_text, errors), errors
+        return self._partial_salvage(response_text, errors), errors, {}
 
     # ── regex / rule-based fallback parser ──────────────────────────────────
 
@@ -354,11 +408,12 @@ class PDFExtractor:
     @staticmethod
     def _parse_json_response(
         text: str,
-    ) -> tuple[list[ExtractedTest], str | None]:
+    ) -> tuple[list[ExtractedTest], str | None, dict[str, Any]]:
         """
         Parse an LLM JSON response into validated ExtractedTest objects.
+        Now expects: {"patient_name": ..., "patient_age": ..., "patient_gender": ..., "tests": [...]}
 
-        Returns (tests, None) on success or ([], error_message) on failure.
+        Returns (tests, None, patient_demo) on success or ([], error_message, {}) on failure.
         """
         # Strip markdown fences if the LLM added them despite instructions
         cleaned = text.strip()
@@ -371,19 +426,31 @@ class PDFExtractor:
         try:
             data = json.loads(cleaned)
         except json.JSONDecodeError as exc:
-            return [], f"JSONDecodeError: {exc}"
+            return [], f"JSONDecodeError: {exc}", {}
 
-        if not isinstance(data, list):
-            return [], "Response is not a JSON array"
+        # New format: object with patient_name, patient_age, patient_gender, tests
+        if isinstance(data, dict):
+            patient_demo = {
+                "patient_name": data.get("patient_name"),
+                "patient_age": data.get("patient_age"),
+                "patient_gender": data.get("patient_gender"),
+            }
+            tests_data = data.get("tests", [])
+        elif isinstance(data, list):
+            # Backward compatibility: old format was just an array of tests
+            patient_demo = {}
+            tests_data = data
+        else:
+            return [], "Response is not a JSON object or array", {}
 
         tests: list[ExtractedTest] = []
-        for item in data:
+        for item in tests_data:
             try:
                 tests.append(ExtractedTest.model_validate(item))
             except Exception as exc:
-                return [], f"Pydantic validation error: {exc}"
+                return [], f"Pydantic validation error: {exc}", {}
 
-        return tests, None
+        return tests, None, patient_demo
 
     @staticmethod
     def _partial_salvage(

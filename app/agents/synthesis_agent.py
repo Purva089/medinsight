@@ -1,6 +1,5 @@
-﻿"""
-Report agent -- synthesises all context into a final structured response.
-
+"""
+Synthesis agent -- synthesises all context into a final structured response.
 Receives (from state):
     rag_context      : retrieved medical knowledge (supported tests only)
     others_tests     : tests with category="others" (no RAG data available)
@@ -88,6 +87,17 @@ def _summarise_tests_for_prompt(extracted_tests: list[dict]) -> str:
     return "\n".join(lines)
 
 
+def _summarise_sql_results(sql_results: list[dict]) -> str:
+    """Format SQL query results for the prompt."""
+    if not sql_results:
+        return "No SQL results."
+    lines: list[str] = []
+    for row in sql_results[:10]:  # Limit to 10 rows
+        parts = [f"{k}: {v}" for k, v in row.items() if v is not None]
+        lines.append("  - " + ", ".join(parts))
+    return "\n".join(lines)
+
+
 def _summarise_others_tests(others_tests: list[dict]) -> str:
     """Build the notice block for unsupported-category tests."""
     if not others_tests:
@@ -104,20 +114,63 @@ def _summarise_others_tests(others_tests: list[dict]) -> str:
     return "\n".join(lines)
 
 
-def _parse_report_response(raw: str, confidence: str, intent: str) -> ReportResponse | None:
+def _strip_html_from_text(text: str) -> str:
+    """Remove any HTML tags from text content."""
+    import re
+    if not text:
+        return text
+    # Remove HTML tags
+    cleaned = re.sub(r'<[^>]+>', '', text)
+    # Clean up extra whitespace from removed tags
+    cleaned = re.sub(r'\s+', ' ', cleaned).strip()
+    return cleaned
+
+
+def _parse_report_response(
+    raw: str, 
+    confidence: str, 
+    intent: str
+) -> ReportResponse | None:
     """Parse LLM output into ReportResponse. Returns None on failure."""
+    import re
     cleaned = raw.strip()
-    if cleaned.startswith("```"):
-        lines = cleaned.split("\n")
-        cleaned = "\n".join(ln for ln in lines if not ln.startswith("```")).strip()
+    
+    # Remove markdown code fences (```json ... ``` or ``` ... ```)
+    # Handle both opening and closing fences
+    if "```" in cleaned:
+        # Extract content between code fences
+        match = re.search(r'```(?:json)?\s*\n?(.*?)\n?```', cleaned, re.DOTALL)
+        if match:
+            cleaned = match.group(1).strip()
+        else:
+            # Fallback: remove lines starting with ```
+            lines = cleaned.split("\n")
+            cleaned = "\n".join(ln for ln in lines if not ln.strip().startswith("```")).strip()
+    
+    # Also try to find JSON object if there's extra text
+    if not cleaned.startswith("{"):
+        json_start = cleaned.find("{")
+        if json_start != -1:
+            cleaned = cleaned[json_start:]
+    
     try:
         data = json.loads(cleaned)
+        
+        # Strip HTML from all text fields (LLM sometimes includes HTML despite instructions)
+        for field in ["direct_answer", "guideline_context", "trend_summary", "watch_for"]:
+            if field in data and isinstance(data[field], str):
+                data[field] = _strip_html_from_text(data[field])
+        
         data["confidence"] = confidence           # Python computes, LLM does not
         data["disclaimer"] = _DISCLAIMER
         if not data.get("intent_handled"):
             data["intent_handled"] = intent
+        
+        # Trust the LLM to format correctly via few-shot prompts
+        # No post-processing formatters - only safety nets (HTML stripping already done above)
         return ReportResponse.model_validate(data)
-    except Exception:
+    except Exception as e:
+        log.debug("json_parse_error", error=str(e)[:100], cleaned_preview=cleaned[:200])
         return None
 
 
@@ -162,10 +215,13 @@ def _is_uuid(val: str) -> bool:
 
 # -- main node -----------------------------------------------------------------
 
-async def report_node(state: MedInsightState) -> MedInsightState:
+async def synthesis_node(state: MedInsightState) -> MedInsightState:
     """
     Synthesise RAG, trend, SQL context and extracted tests into a final
     structured ReportResponse via LLM.
+
+    Only runs when multiple agents are needed (multi-agent queries).
+    For single-agent queries, each agent returns directly to user.
 
     Flow:
         1. Safeguard check  -- block off-topic queries
@@ -225,26 +281,29 @@ async def report_node(state: MedInsightState) -> MedInsightState:
     if not rag_chunks:
         state["disclaimer_required"] = True
 
-    confidence = compute_confidence(rag_chunks, trend_results)
+    confidence = compute_confidence(rag_chunks, trend_results, sql_results)
 
-    trend_summary = (
-        "\n".join(t.get("trend_description", "") for t in trend_results)
-        if trend_results
-        else "No trend data available."
-    )
+    # Build concise trend summary (used by LLM prompt, not shown directly to user)
+    if trend_results:
+        trend_lines = []
+        for t in trend_results:
+            name = t.get("test_name", "Unknown")
+            direction = t.get("direction", "stable")
+            change = t.get("change_percent", 0)
+            trend_lines.append(f"• {name}: {direction} ({change:+.1f}%)")
+        trend_summary = "\n".join(trend_lines)
+    else:
+        trend_summary = "No trend data available."
 
     # -- 3. Build LLM prompt ---------------------------------------------------
-    others_notice = _summarise_others_tests(others_tests)
     prompt = PROMPT_REPORT.format(
         patient_name=patient_profile.get("name", "Patient"),
-        patient_profile=json.dumps(patient_profile, default=str),
-        ltm_summary=ltm_summary or "No prior consultation history.",
         extracted_tests=_summarise_tests_for_prompt(extracted_tests),
-        rag_context=rag_context or "No medical guidelines retrieved.",
+        sql_results=_summarise_sql_results(sql_results),
+        rag_context=rag_context or "No guidelines available.",
         trend_summary=trend_summary,
-        sql_results=json.dumps(sql_results, default=str),
         question=question,
-        others_notice=others_notice or "None.",
+        intent=intent,
     )
 
     log.info(
@@ -264,13 +323,15 @@ async def report_node(state: MedInsightState) -> MedInsightState:
 
     try:
         raw = await _llm.call_reasoning(prompt, max_tokens_key="report")
+        log.debug("report_llm_raw_output", raw_len=len(raw), raw_preview=raw[:300])
         response = _parse_report_response(raw, confidence, intent)
 
         if response is None:
             log.warning(
                 "report_parse_failed_self_healing",
                 patient_id=patient_id,
-                raw_preview=raw[:200],
+                raw_preview=raw[:500],
+                raw_len=len(raw),
             )
             heal_raw = await _llm.call_reasoning(
                 _SELF_HEAL_PREFIX + raw, max_tokens_key="report"
@@ -387,7 +448,7 @@ async def report_node(state: MedInsightState) -> MedInsightState:
             else:
                 summary_row.summary_text = new_summary
                 summary_row.generated_at = now
-                summary_row.updated_at = now
+                summary_row.updated_at=now
 
             await db_session.commit()
             log.info(

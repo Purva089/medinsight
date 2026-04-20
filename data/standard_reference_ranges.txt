@@ -1,0 +1,74 @@
+# Standard Reference Ranges for Common Lab Tests
+# Source: Compiled from clinical laboratory standards
+# Format: test_name, range_low, range_high, unit, notes
+
+# Blood Count Tests
+Hemoglobin,13.5,17.5,g/dL,Men: 13.5-17.5; Women: 12-15.5
+Hematocrit,38.8,50,%, Men: 38.8-50%; Women: 34.9-44.5%
+RBC Count,4.5,5.9,million cells/mcL,Men: 4.5-5.9; Women: 4.1-5.1
+WBC Count,4.5,11,thousand cells/mcL,Normal range
+Platelet Count,150,400,thousand/mcL,Normal range
+Neutrophils,45,75,%,Normal percentage
+Lymphocytes,20,40,%,Normal percentage
+Monocytes,2,8,%,Normal percentage
+Eosinophils,1,4,%,Normal percentage
+Basophils,0.5,1,%,Normal percentage
+
+# Liver Function Tests
+SGPT,7,56,U/L,ALT - Alanine aminotransferase
+SGOT,10,40,U/L,AST - Aspartate aminotransferase
+Alkaline Phosphatase,44,147,IU/L,ALP
+Total Bilirubin,0.1,1.2,mg/dL,Normal range
+Direct Bilirubin,0,0.3,mg/dL,Normal range
+Albumin,3.5,5.5,g/dL,Normal range
+Total Protein,6,8.3,g/dL,Normal range
+
+# Metabolic/Diabetes Tests
+Fasting Blood Glucose,70,100,mg/dL,Normal fasting
+Random Blood Sugar,70,140,mg/dL,Normal non-fasting
+HbA1c,4,5.6,%,Normal: <5.7%; Prediabetes: 5.7-6.4%
+Insulin,2.6,24.9,µIU/mL,Fasting insulin
+
+# Kidney Function Tests
+Creatinine,0.7,1.3,mg/dL,Men: 0.7-1.3; Women: 0.6-1.1
+BUN,7,20,mg/dL,Blood Urea Nitrogen
+eGFR,90,120,mL/min/1.73m²,>90 is normal
+
+# Thyroid Tests
+TSH,0.4,4,mIU/L,Thyroid Stimulating Hormone
+Free T4,0.8,1.8,ng/dL,Thyroxine
+Free T3,2.3,4.2,pg/mL,Triiodothyronine
+
+# Lipid Panel
+Total Cholesterol,125,200,mg/dL,Desirable: <200
+LDL Cholesterol,0,100,mg/dL,Optimal: <100
+HDL Cholesterol,40,60,mg/dL,Men: >40; Women: >50
+Triglycerides,0,150,mg/dL,Normal: <150
+VLDL,2,30,mg/dL,Normal range
+
+# Electrolytes
+Sodium,136,145,mEq/L,Normal range
+Potassium,3.5,5,mEq/L,Normal range
+Calcium,8.5,10.5,mg/dL,Normal range
+
+# Vitamins & Hormones
+Vitamin D,30,100,ng/mL,Sufficient: 30-100
+Vitamin B12,200,900,pg/mL,Normal range
+Iron,60,170,µg/dL,Men: 65-175; Women: 50-170
+Ferritin,24,336,ng/mL,Men: 24-336; Women: 11-307
+Testosterone,300,1000,ng/dL,Adult males
+Estradiol,15,350,pg/mL,Varies by menstrual phase
+Cortisol,6,23,µg/dL,Morning: 6-23; Evening: 3-16
+DHEA-S,35,430,µg/dL,Men: 80-560; Women: 35-430
+
+# Inflammation Markers
+CRP,0,3,mg/L,C-Reactive Protein
+ESR,0,20,mm/hr,Men: <15; Women: <20
+Procalcitonin,0,0.05,ng/mL,<0.05 = low risk
+
+# Coagulation
+Fibrinogen,200,400,mg/dL,Normal range
+D-Dimer,0,0.5,µg/mL FEU,<0.5 is negative
+
+# Other
+Uric Acid,3.5,7.2,mg/dL,Men: 3.5-7.2; Women: 2.6-6

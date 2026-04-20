@@ -162,11 +162,23 @@ async def get_trend(
     else:
         direction = "falling"
 
+    # Significant change detection (>20% change between consecutive readings)
+    significant_change = False
+    if len(rows) >= 2:
+        for i in range(1, len(rows)):
+            prev_val = rows[i - 1].value
+            curr_val = rows[i].value
+            if prev_val and abs((curr_val - prev_val) / prev_val) > 0.20:
+                significant_change = True
+                break
+
     description_parts = [f"{test_name} has {direction} by {abs(change_percent):.1f}% over the period."]
     if velocity_concern:
         description_parts.append("Rate of change is clinically significant.")
     if threshold_crossed:
         description_parts.append("Values have crossed the reference range boundary.")
+    if significant_change:
+        description_parts.append("A significant shift (>20%) was detected between readings.")
 
     return TrendResult(
         test_name=test_name,
@@ -176,6 +188,7 @@ async def get_trend(
         delta_per_month=round(delta_per_month, 4),
         velocity_concern=velocity_concern,
         threshold_crossed=threshold_crossed,
+        significant_change=significant_change,
         trend_description=" ".join(description_parts),
         reference_low=ref_low,
         reference_high=ref_high,

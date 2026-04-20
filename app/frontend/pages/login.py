@@ -196,14 +196,14 @@ def show_login_page() -> None:
                 else:
                     with st.spinner("Signing in…"):
                         _do_login(em.strip(), pw)
-            st.markdown(f"""
-<div style="margin-top:18px;padding:14px 16px;background:#F0F0FE;
-            border:1px solid #C7D2FE;border-radius:12px">
-  <p style="margin:0 0 3px;font-size:0.72rem;font-weight:800;color:{_B}">
-    Demo credentials</p>
-  <p style="margin:0;font-size:0.82rem;color:{_B};font-family:monospace;line-height:1.6">
-    patient1@medinsight.demo<br/>Demo@1234</p>
-</div>""", unsafe_allow_html=True)
+#             st.markdown(f"""
+# <div style="margin-top:18px;padding:14px 16px;background:#F0F0FE;
+#             border:1px solid #C7D2FE;border-radius:12px">
+#   <p style="margin:0 0 3px;font-size:0.72rem;font-weight:800;color:{_B}">
+#     Demo credentials</p>
+#   <p style="margin:0;font-size:0.82rem;color:{_B};font-family:monospace;line-height:1.6">
+#     patient1@medinsight.demo<br/>Demo@1234</p>
+# </div>""", unsafe_allow_html=True)
 
         with tab_up:
             st.markdown("<div style='height:18px'></div>", unsafe_allow_html=True)

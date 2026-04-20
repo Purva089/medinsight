@@ -1,0 +1,105 @@
+# GitHub Actions workflow for Azure Container Apps deployment
+
+name: Deploy to Azure Container Apps
+
+on:
+  push:
+    branches:
+      - main
+      - production
+  workflow_dispatch:
+
+env:
+  AZURE_RESOURCE_GROUP: medinsight-rg
+  AZURE_LOCATION: eastus
+  AZURE_CONTAINER_REGISTRY: medinsightacr
+  BACKEND_IMAGE_NAME: medinsight-backend
+  FRONTEND_IMAGE_NAME: medinsight-frontend
+  BACKEND_CONTAINER_APP: medinsight-backend-app
+  FRONTEND_CONTAINER_APP: medinsight-frontend-app
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # ═══════════════════════════════════════════════════════════════════════
+      # 1. Checkout code
+      # ═══════════════════════════════════════════════════════════════════════
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ═══════════════════════════════════════════════════════════════════════
+      # 2. Login to Azure
+      # ═══════════════════════════════════════════════════════════════════════
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # ═══════════════════════════════════════════════════════════════════════
+      # 3. Login to Azure Container Registry
+      # ═══════════════════════════════════════════════════════════════════════
+      - name: Login to ACR
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
+      # ═══════════════════════════════════════════════════════════════════════
+      # 4. Build and push Backend Docker image
+      # ═══════════════════════════════════════════════════════════════════════
+      - name: Build and push Backend image
+        run: |
+          docker build -f Dockerfile -t ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.BACKEND_IMAGE_NAME }}:${{ github.sha }} .
+          docker build -f Dockerfile -t ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.BACKEND_IMAGE_NAME }}:latest .
+          docker push ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.BACKEND_IMAGE_NAME }}:${{ github.sha }}
+          docker push ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.BACKEND_IMAGE_NAME }}:latest
+
+      # ═══════════════════════════════════════════════════════════════════════
+      # 5. Build and push Frontend Docker image
+      # ═══════════════════════════════════════════════════════════════════════
+      - name: Build and push Frontend image
+        run: |
+          docker build -f Dockerfile.frontend -t ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.FRONTEND_IMAGE_NAME }}:${{ github.sha }} .
+          docker build -f Dockerfile.frontend -t ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.FRONTEND_IMAGE_NAME }}:latest .
+          docker push ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.FRONTEND_IMAGE_NAME }}:${{ github.sha }}
+          docker push ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.FRONTEND_IMAGE_NAME }}:latest
+
+      # ═══════════════════════════════════════════════════════════════════════
+      # 6. Deploy Backend to Azure Container Apps
+      # ═══════════════════════════════════════════════════════════════════════
+      - name: Deploy Backend to Container Apps
+        uses: azure/container-apps-deploy-action@v1
+        with:
+          acrName: ${{ env.AZURE_CONTAINER_REGISTRY }}
+          containerAppName: ${{ env.BACKEND_CONTAINER_APP }}
+          resourceGroup: ${{ env.AZURE_RESOURCE_GROUP }}
+          imageToDeploy: ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.BACKEND_IMAGE_NAME }}:${{ github.sha }}
+          targetPort: 8000
+          environmentVariables: |
+            DATABASE_URL=secretref:database-url
+            GROQ_API_KEY=secretref:groq-api-key
+            SECRET_KEY=secretref:secret-key
+            APP_DEBUG=false
+
+      # ═══════════════════════════════════════════════════════════════════════
+      # 7. Deploy Frontend to Azure Container Apps
+      # ═══════════════════════════════════════════════════════════════════════
+      - name: Deploy Frontend to Container Apps
+        uses: azure/container-apps-deploy-action@v1
+        with:
+          acrName: ${{ env.AZURE_CONTAINER_REGISTRY }}
+          containerAppName: ${{ env.FRONTEND_CONTAINER_APP }}
+          resourceGroup: ${{ env.AZURE_RESOURCE_GROUP }}
+          imageToDeploy: ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.FRONTEND_IMAGE_NAME }}:${{ github.sha }}
+          targetPort: 8501
+          environmentVariables: |
+            BACKEND_URL=https://${{ env.BACKEND_CONTAINER_APP }}.azurecontainerapps.io
+
+      # ═══════════════════════════════════════════════════════════════════════
+      # 8. Logout from Azure
+      # ═══════════════════════════════════════════════════════════════════════
+      - name: Azure Logout
+        run: az logout

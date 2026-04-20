@@ -31,8 +31,8 @@ from app.core.logging import (
 log = get_logger(__name__)
 
 # Performance thresholds (ms)
-WARN_THRESHOLD_MS = 1000   # Log warning if request takes > 1s
-ERROR_THRESHOLD_MS = 5000  # Log error if request takes > 5s
+WARN_THRESHOLD_MS = 10000   # Log warning if request takes > 10s
+ERROR_THRESHOLD_MS = 60000  # Log error if request takes > 60s
 
 # Paths to exclude from verbose logging
 HEALTH_CHECK_PATHS = frozenset({"/health", "/healthz", "/ready", "/metrics"})
