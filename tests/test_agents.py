@@ -1,15 +1,13 @@
 """
-Backend Agent Test Suite.
+Backend Agent Test Suite — STANDALONE SCRIPT (not a pytest suite).
 
-Standalone script to test all agents without running the full API.
-Useful for development and debugging.
+Run directly:
+    python tests/test_agents.py
+    python tests/test_agents.py --agent rag
 
-Usage:
-    python scripts/test_agents.py                # Run all tests
-    python scripts/test_agents.py --agent rag    # Test specific agent
-    python scripts/test_agents.py --agent sql
-    python scripts/test_agents.py --agent trend
-    python scripts/test_agents.py --agent orchestrator
+This file is intentionally excluded from pytest collection (see conftest.py)
+because it uses asyncio.run() instead of pytest-asyncio and is designed for
+manual debugging without a running DB.
 """
 from __future__ import annotations
 

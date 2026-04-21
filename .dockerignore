@@ -79,6 +79,4 @@ Dockerfile*
 azure-pipelines.yml
 azure-deploy.yml
 
-# Alembic (migrations should be baked into image)
-# Keep alembic/ but ignore version history if needed
-# alembic/versions/*.py
+

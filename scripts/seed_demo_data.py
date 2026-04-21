@@ -11,7 +11,6 @@ Usage:
     python scripts/seed_demo_data.py           # Seed demo patients
     python scripts/seed_demo_data.py --reset   # Clear and re-seed
 
-Does NOT depend on Kaggle CSV — all data is defined here.
 """
 from __future__ import annotations
 

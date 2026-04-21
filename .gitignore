@@ -66,11 +66,6 @@ data/synthetic_reports/historical/*.pdf
 !data/synthetic_reports/current/.gitkeep
 !data/synthetic_reports/historical/.gitkeep
 
-# ── Knowledge Base (optional: commit small files, ignore large) ───────────────
-# Uncomment if you don't want to version control knowledge base files:
-# data/knowledge_base/medlineplus/*.txt
-# data/knowledge_base/who/*.pdf
-# data/knowledge_base/clinics/*.txt
 
 # ── OS-specific ───────────────────────────────────────────────────────────────
 Thumbs.db
@@ -117,3 +112,5 @@ yarn.lock
 uploaded_files/
 *.pkl
 *.joblib
+
+medinsight.egg-info/

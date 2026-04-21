@@ -50,7 +50,7 @@ from langgraph.graph import END, StateGraph
 
 from app.agents.orchestrator import orchestrator_node
 from app.agents.rag_agent import rag_node
-from app.agents.synthesis_agent import synthesis_node  # synthesis_node is the function name
+from app.agents.synthesis_agent import synthesis_node  
 from app.agents.state import MedInsightState
 from app.agents.text_to_sql_agent import text_to_sql_node
 from app.agents.trend_agent import trend_node

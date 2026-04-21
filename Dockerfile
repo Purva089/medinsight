@@ -1,7 +1,6 @@
 # ============================================================================
 # MedInsight - Unified Multi-Service Dockerfile
 # Runs both Backend (FastAPI) and Frontend (Streamlit) in single container
-# Optimized for Azure Container Apps deployment
 # ============================================================================
 
 FROM python:3.12-slim as base

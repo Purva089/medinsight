@@ -49,45 +49,15 @@ def _build_engine() -> AsyncEngine:
         raise
 
 
-# Lazy initialization: engine is created on first use, not at import time
-_engine: AsyncEngine | None = None
-_AsyncSessionLocal: async_sessionmaker[AsyncSession] | None = None
+engine: AsyncEngine = _build_engine()
 
-
-def get_engine() -> AsyncEngine:
-    """Get or create the database engine (lazy initialization)."""
-    global _engine
-    if _engine is None:
-        _engine = _build_engine()
-    return _engine
-
-
-def get_sessionmaker() -> async_sessionmaker[AsyncSession]:
-    """Get or create the session maker (lazy initialization)."""
-    global _AsyncSessionLocal
-    if _AsyncSessionLocal is None:
-        engine = get_engine()
-        _AsyncSessionLocal = async_sessionmaker(
-            bind=engine,
-            class_=AsyncSession,
-            expire_on_commit=False,
-            autocommit=False,
-            autoflush=False,
-        )
-    return _AsyncSessionLocal
-
-
-# For backwards compatibility
-@property
-def engine() -> AsyncEngine:
-    """Backwards compatible engine access."""
-    return get_engine()
-
-
-@property
-def AsyncSessionLocal() -> async_sessionmaker[AsyncSession]:
-    """Backwards compatible sessionmaker access."""
-    return get_sessionmaker()
+AsyncSessionLocal = async_sessionmaker(
+    bind=engine,
+    class_=AsyncSession,
+    expire_on_commit=False,
+    autocommit=False,
+    autoflush=False,
+)
 
 
 async def get_db() -> AsyncGenerator[AsyncSession, None]:
@@ -96,8 +66,7 @@ async def get_db() -> AsyncGenerator[AsyncSession, None]:
 
     Rolls back on exception so the session is never left in a dirty state.
     """
-    sessionmaker = get_sessionmaker()
-    async with sessionmaker() as session:
+    async with AsyncSessionLocal() as session:
         try:
             yield session
             await session.commit()

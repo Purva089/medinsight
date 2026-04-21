@@ -105,7 +105,7 @@ class A2ACommunicationHub:
             action=request.action,
         )
         
-        # Log the message
+        
         self._message_log.append({
             "type": "request",
             **request.to_dict(),
@@ -140,7 +140,7 @@ class A2ACommunicationHub:
                     error=str(exc)[:200],
                 )
         
-        # Log the response
+    
         self._message_log.append({
             "type": "response",
             **response.to_dict(),
@@ -221,11 +221,11 @@ async def _trend_agent_handler(
         )
     
     elif action == "get_trend_summary":
-        # Generate trend summary
+        
         trend_results = state.get("trend_results", [])
         
         if not trend_results:
-            # Need to compute first
+         
             state_copy = copy.deepcopy(state)
             result_state = await trend_node(state_copy)
             trend_results = result_state.get("trend_results", [])
@@ -287,7 +287,7 @@ async def _rag_agent_handler(
     payload = request.payload
     
     if action == "get_guidelines":
-        # Override question to search for specific guidelines
+        
         state_copy = copy.deepcopy(state)
         
         condition = payload.get("condition", state_copy.get("current_question", ""))
